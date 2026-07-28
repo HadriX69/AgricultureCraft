@@ -105,11 +105,13 @@ clears `src/generated`:
 # optional overrides:
 ./gradlew renameMod --name "Sick Mod" --id sickmod --group com.acme.sickmod
 ```
-
 `--id` defaults to the name lowercased (`sickmod`); `--group` defaults to
 `com.example.<id>`. Commit or stash first — it edits files in place; review the
 result with `git diff`. Once you're happy, delete `gradle/rename-mod.gradle` and its
 `apply from:` line in `build.gradle`, then regenerate assets with `./gradlew runData`.
+
+*!! Be sure to rerun the data gen after renaming your mod: `./gradlew runData` !!*
+
 
 Finish up in `gradle.properties` (author, description, version, license):
 
