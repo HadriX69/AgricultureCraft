@@ -1,0 +1,28 @@
+{
+	"itemGroup.agriculture_craft": "Beispiel Create-Erweiterung",
+	"itemGroup.agriculture_craft.main_tab": "Hauptreiter",
+
+	"block.agriculture_craft.agriculture_craft_kinetic_block": "Beispiel-Kinetikblock",
+	"block.agriculture_craft.agriculture_craft_generator_block": "Beispiel-Generatorblock",
+
+	"item.agriculture_craft.agriculture_craft_item": "Beispielgegenstand",
+	"item.agriculture_craft.agriculture_craft_result": "Beispielergebnis",
+	"item.agriculture_craft.incomplete_example": "Unvollständiges Beispiel",
+
+	"gui.agriculture_craft.agriculture_craft_generator.generating": "Erzeugt Rotation",
+	"gui.agriculture_craft.agriculture_craft_kinetic.consuming": "Verbraucht Belastung",
+	"gui.agriculture_craft.rpm": "%s UPM",
+	"gui.agriculture_craft.su": "%s SU",
+
+	"display_source.agriculture_craft.agriculture_craft_source": "Kinetische Geschwindigkeit",
+
+	"item.agriculture_craft.agriculture_craft_item.tooltip.summary": "Ein Vorführgegenstand für die _Beispiel-Erweiterung_.",
+	"item.agriculture_craft.agriculture_craft_item.tooltip.condition1": "Wenn gehalten",
+	"item.agriculture_craft.agriculture_craft_item.tooltip.behaviour1": "Zeigt diese Beschreibung – ermöglicht durch Creates _ItemDescription_-Tooltip-System.",
+
+	"agriculture_craft.ponder.agriculture_craft_ponder.header": "Willkommen bei der Beispiel-Erweiterung",
+	"agriculture_craft.ponder.agriculture_craft_ponder.text_1": "Jeder Block hier wird aus agriculture_craft_ponder.nbt geladen",
+	"agriculture_craft.ponder.agriculture_craft_ponder.text_2": "Blockentitäten wie dieses Schild werden dargestellt und ticken wie in der Welt",
+	"agriculture_craft.ponder.agriculture_craft_ponder.text_3": "Zwei mechanische Arme flankieren das Schild und beweisen, dass auch Creates eigene Blöcke funktionieren",
+	"agriculture_craft.ponder.agriculture_craft_ponder.text_4": "Du kannst auch den blöcken rpm werte geben"
+}

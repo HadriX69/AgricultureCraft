@@ -1,0 +1,13 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "results": [
+    {
+      "id": "agriculture_craft:agriculture_craft_item"
+    }
+  ]
+}

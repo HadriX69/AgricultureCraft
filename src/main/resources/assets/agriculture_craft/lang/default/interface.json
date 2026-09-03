@@ -1,0 +1,10 @@
+{
+	"itemGroup.agriculture_craft": "AgricultureCraft",
+
+	"gui.agriculture_craft.agriculture_craft_generator.generating": "Generating rotation",
+	"gui.agriculture_craft.agriculture_craft_kinetic.consuming": "Drawing stress",
+	"gui.agriculture_craft.rpm": "%s RPM",
+	"gui.agriculture_craft.su": "%s SU",
+
+	"display_source.agriculture_craft.agriculture_craft_source": "Kinetic Speed"
+}

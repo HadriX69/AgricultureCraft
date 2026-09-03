@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "agriculture_craft:block/agriculture_craft_kinetic_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "agriculture_craft:block/agriculture_craft_kinetic_block"
+    },
+    "axis=z": {
+      "model": "agriculture_craft:block/agriculture_craft_kinetic_block",
+      "x": 90,
+      "y": 180
+    }
+  }
+}

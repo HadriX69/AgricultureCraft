@@ -1,0 +1,13 @@
+{
+  "type": "create:haunting",
+  "ingredients": [
+    {
+      "item": "agriculture_craft:agriculture_craft_item"
+    }
+  ],
+  "results": [
+    {
+      "id": "agriculture_craft:agriculture_craft_result"
+    }
+  ]
+}

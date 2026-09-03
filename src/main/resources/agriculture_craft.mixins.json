@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.hadrix.agriculture_craft.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "agriculture_craft.refmap.json",
+  "client": [
+    "PonderSceneAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
