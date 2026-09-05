@@ -3,6 +3,5 @@
 	"item.agriculture_craft.agriculture_craft_item.tooltip.condition1": "When Held",
 	"item.agriculture_craft.agriculture_craft_item.tooltip.behaviour1": "Reveals this description, powered by Create's _ItemDescription_ tooltip system.",
 
-    "item.agriculture_craft.anemometer.tooltip.summary": "This Item is still in development",
-    "item.agriculture_craft.anemometer": "Anemometer"
+    "item.agriculture_craft.anemometer.tooltip.summary": "This Item is still in development"
 }
