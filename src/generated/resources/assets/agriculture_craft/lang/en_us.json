@@ -20,6 +20,8 @@
   "item.agriculture_craft.agriculture_craft_item.tooltip.condition1": "When Held",
   "item.agriculture_craft.agriculture_craft_item.tooltip.summary": "A showcase item for the _Example Addon_.",
   "item.agriculture_craft.agriculture_craft_result": "Agriculture Craft Result",
+  "item.agriculture_craft.anemometer": "Anemometer",
+  "item.agriculture_craft.anemometer.tooltip.summary": "The Item is still in developpement",
   "item.agriculture_craft.incomplete_example": "Incomplete Example",
   "itemGroup.agriculture_craft": "AgricultureCraft",
   "itemGroup.agriculture_craft.main_tab": "Main Tab"

@@ -1,5 +1,7 @@
 package com.hadrix.agriculture_craft;
 
+import com.hadrix.agriculture_craft.items.AnemometerItem;
+import com.hadrix.agriculture_craft.items.ThermometerItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.resources.ResourceLocation;
@@ -30,12 +32,17 @@ public class AllItems {
      */
     public static final ItemEntry<Item> INCOMPLETE_EXAMPLE = AgricultureCraft.REGISTRATE
             .item("incomplete_example", Item::new)
+            .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/iron_ingot")))
+            .register();
+
+    public static final ItemEntry<AnemometerItem> ANEMOMETER = AgricultureCraft.REGISTRATE
+            .item("anemometer", AnemometerItem::new)
             .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/brick")))
             .register();
 
-    public static final ItemEntry<Item> ORGE = AgricultureCraft.REGISTRATE
-            .item("orge", Item::new)
-            .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/sweet_berry")))
+    public static final ItemEntry<ThermometerItem> THERMOMETER = AgricultureCraft.REGISTRATE
+            .item("thermometer" , ThermometerItem::new)
+            .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/iron_ingot")))
             .register();
 
     public static void register() {

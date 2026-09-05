@@ -25,6 +25,7 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import dev.engine_room.flywheel.lib.visualization.SimpleBlockEntityVisualizer;
 import net.createmod.catnip.lang.FontHelper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -33,7 +34,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -63,6 +67,8 @@ public class AgricultureCraft {
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(this::onClientSetup);
         modBus.addListener(this::onGatherData);
+
+        NeoForge.EVENT_BUS.addListener(AgricultureCraft::OnTick);
     }
 
     public static ResourceLocation asResource(String path) {
@@ -126,5 +132,10 @@ public class AgricultureCraft {
         generator.addProvider(event.includeServer(), new AgricultureCraftFillingRecipeGen(output, registries));
         generator.addProvider(event.includeServer(), new AgricultureCraftEmptyingRecipeGen(output, registries));
         generator.addProvider(event.includeServer(), new AgricultureCraftDeployingRecipeGen(output, registries));
+    }
+
+    private static void OnTick(final PlayerTickEvent.Pre event)
+    {
+        ClimateManager.OnTick(Minecraft.getInstance());
     }
 }
