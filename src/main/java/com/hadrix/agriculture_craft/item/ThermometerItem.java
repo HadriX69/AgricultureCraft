@@ -29,19 +29,19 @@ public class ThermometerItem extends Item {
                 {
                     if(ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) >= 30.0f)
                     {
-                        player.displayClientMessage(Component.literal("§4Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                        player.displayClientMessage(Component.literal("§4 Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
                     }
                     else if (ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) >= 20.0f && ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) <= 30.0f)
                     {
-                        player.displayClientMessage(Component.literal("§cTemperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                        player.displayClientMessage(Component.literal("§c Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
                     }
                     else if (ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) <= 20.0f && ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) >= 0.0f)
                     {
-                        player.displayClientMessage(Component.literal("§3Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                        player.displayClientMessage(Component.literal("§3 Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
                     }
                     else if (ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) <= 0.0f)
                     {
-                        player.displayClientMessage(Component.literal("§bTemperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                        player.displayClientMessage(Component.literal("§b Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
                     }
                 }
 
