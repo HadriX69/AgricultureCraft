@@ -1,4 +1,4 @@
 package com.hadrix.agriculture_craft.block;
 
-public class SprinklerBloc {
+public class SprinklerRenderer {
 }
