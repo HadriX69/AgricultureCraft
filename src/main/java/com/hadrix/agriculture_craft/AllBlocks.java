@@ -1,11 +1,15 @@
 package com.hadrix.agriculture_craft;
 
+import com.hadrix.agriculture_craft.block.SprinklerBlock;
+import com.hadrix.agriculture_craft.block.SprinklerBlockEntity;
+import com.hadrix.agriculture_craft.block.SprinklerRenderer;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlock;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftKineticBlock;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
 import net.minecraft.core.Direction;
@@ -57,6 +61,31 @@ public class AllBlocks {
             .onRegister(b -> BlockStressValues.CAPACITIES.register(b, () -> 128))
             .item()
             .build()
+            .register();
+
+//    public static final BlockEntry<SprinklerBlock> SPRINKLER_BLOCK = AgricultureCraft.REGISTRATE
+//            .block("sprinkler_block", SprinklerBlock::new)
+//            .properties(p -> p.noOcclusion())
+//            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/sprinkler_base"))))
+//            .item()
+//            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("item/sprinkler_block")))
+//            .build()
+//            .register();
+
+    public static final BlockEntry<SprinklerBlock> SPRINKLER_BLOCK = AgricultureCraft.REGISTRATE
+            .block("sprinkler", SprinklerBlock::new)
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/sprinkler_block"))))
+            .properties(p -> p.noOcclusion())
+            .item()
+            .build()
+            .register();
+
+
+
+    public static final BlockEntityEntry<SprinklerBlockEntity> SPRINKLER_BLOCK_ENTITY = AgricultureCraft.REGISTRATE
+            .blockEntity("sprinkler_entity" , SprinklerBlockEntity::new)
+            .validBlocks(AllBlocks.SPRINKLER_BLOCK)
+            .renderer(() -> SprinklerRenderer::new)
             .register();
 
     /**

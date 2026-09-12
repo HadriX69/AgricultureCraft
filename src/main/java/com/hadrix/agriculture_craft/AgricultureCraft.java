@@ -34,6 +34,8 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -67,6 +69,7 @@ public class AgricultureCraft {
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(this::onClientSetup);
         modBus.addListener(this::onGatherData);
+        modBus.addListener(this::onRegisterCapabilities);
 
         NeoForge.EVENT_BUS.addListener(AgricultureCraft::OnTick);
     }
@@ -84,6 +87,7 @@ public class AgricultureCraft {
         event.enqueueWork(() -> {
             // Ponder is client-only
             PonderIndex.addPlugin(new AgricultureCraftPonderPlugin());
+            ModPartialModels.init();
         });
     }
 
@@ -134,8 +138,19 @@ public class AgricultureCraft {
         generator.addProvider(event.includeServer(), new AgricultureCraftDeployingRecipeGen(output, registries));
     }
 
+    private void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                AllBlocks.SPRINKLER_BLOCK_ENTITY.get(),
+                (blockEntity, side) -> blockEntity.tankBehaviour.getPrimaryHandler()
+        );
+    }
+
     private static void OnTick(final PlayerTickEvent.Pre event)
     {
-        ClimateManager.OnTick(Minecraft.getInstance());
+        if (event.getEntity().level().isClientSide()) {
+            ClimateManager.OnTick(Minecraft.getInstance());
+        }
+
     }
 }

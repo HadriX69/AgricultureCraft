@@ -1,11 +1,8 @@
-package com.hadrix.agriculture_craft.items;
+package com.hadrix.agriculture_craft.item;
 
-import com.hadrix.agriculture_craft.AgricultureCraft;
-import com.hadrix.agriculture_craft.ClimateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;

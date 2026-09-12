@@ -10,6 +10,7 @@
   "agriculture_craft.ponder.desk_bell_intro.text_3": "The bell can also be rang using a deployer",
   "block.agriculture_craft.agriculture_craft_generator_block": "Agriculture Craft Generator Block",
   "block.agriculture_craft.agriculture_craft_kinetic_block": "Agriculture Craft Kinetic Block",
+  "block.agriculture_craft.sprinkler": "Sprinkler",
   "display_source.agriculture_craft.agriculture_craft_source": "Kinetic Speed",
   "gui.agriculture_craft.agriculture_craft_generator.generating": "Generating rotation",
   "gui.agriculture_craft.agriculture_craft_kinetic.consuming": "Drawing stress",

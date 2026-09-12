@@ -1,9 +1,9 @@
 {
-	"format_version": "1.9.0",
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sprinkler_helix_t",
-		"particle": "sprinkler_helix_t"
+		"0": "agriculture_craft:block/sprinkler_helix_t",
+		"particle": "agriculture_craft:block/sprinkler_helix_t"
 	},
 	"elements": [
 		{

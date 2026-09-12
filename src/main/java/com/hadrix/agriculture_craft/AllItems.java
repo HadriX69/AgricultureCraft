@@ -1,7 +1,7 @@
 package com.hadrix.agriculture_craft;
 
-import com.hadrix.agriculture_craft.items.AnemometerItem;
-import com.hadrix.agriculture_craft.items.ThermometerItem;
+import com.hadrix.agriculture_craft.item.AnemometerItem;
+import com.hadrix.agriculture_craft.item.ThermometerItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.resources.ResourceLocation;
@@ -41,9 +41,12 @@ public class AllItems {
             .register();
 
     public static final ItemEntry<ThermometerItem> THERMOMETER = AgricultureCraft.REGISTRATE
-            .item("thermometer" , ThermometerItem::new)
-            .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/iron_ingot")))
+            .item("thermometer", ThermometerItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/thermometer_3d")))
             .register();
+
+
+
 
     public static void register() {
         // Force class loading to trigger Registrate calls
