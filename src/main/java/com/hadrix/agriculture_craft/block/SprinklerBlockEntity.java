@@ -8,13 +8,20 @@ import com.simibubi.create.foundation.fluid.SmartFluidTank;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Position;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
@@ -30,6 +37,7 @@ public class SprinklerBlockEntity extends SmartBlockEntity
     public boolean isWorking = false;
     public float angle = 0;
     public float prevAngle = 0;
+
 
 
     @Override
@@ -48,6 +56,8 @@ public class SprinklerBlockEntity extends SmartBlockEntity
 
     @Override
     public void tick() {
+        super.tick();
+
         SmartFluidTank primaryTank = tankBehaviour.getPrimaryHandler();
         boolean hasWater = primaryTank.getFluidAmount() > 0
                 && primaryTank.getFluid().getFluid().isSame(Fluids.WATER);
@@ -56,44 +66,69 @@ public class SprinklerBlockEntity extends SmartBlockEntity
             prevAngle = angle;
             if (isWorking) {
                 angle += 15.0f;
+
+                RandomSource random = level.getRandom();
+                double px = this.getBlockPos().getX() + 0.5 + (random.nextDouble() - 0.5) * 5;
+                double py = this.getBlockPos().getY() - 0.5;
+                double pz = this.getBlockPos().getZ() + 0.5 + (random.nextDouble() - 0.5) * 5;
+
+                level.addParticle(ParticleTypes.RAIN, px, py, pz, 0, 3, 0);
             }
         }
         else
         {
-            if (hasWater)
-            {
+            if (hasWater) {
                 primaryTank.drain(1, IFluidHandler.FluidAction.EXECUTE);
-                if(level instanceof ServerLevel serverLevel)
-                {
-                    serverLevel.sendParticles(ParticleTypes.RAIN,
-                            tankBehaviour.getPos().getX() + 0.5, tankBehaviour.getPos().getY() - 0.25, tankBehaviour.getPos().getZ() + 0.5,
-                            15,5,0,5,3);
-                }
-                if (!isWorking)
-                {
+
+                if (!isWorking) {
                     isWorking = true;
                     sendData();
+                }
+
+                boolean timer = level.getGameTime() % 80 == 0;
+
+                if (timer) {
+                    for (int x = -10; x <= 10; x++) {
+                        for (int z = -10; z <= 10; z++) {
+                            for (int y = -1; y >= -15; y--) {
+                                BlockPos currentPos = this.getBlockPos().offset(x, y, z);
+                                BlockState state = level.getBlockState(currentPos);
+
+                                if (state.is(Blocks.FARMLAND)) {
+                                    if (state.getValue(BlockStateProperties.MOISTURE) < 7) {
+                                        BlockState newState = state.setValue(BlockStateProperties.MOISTURE, 7);
+                                        level.setBlock(currentPos, newState, 3);
+                                    }
+                                    break;
+                                }
+
+                                if (!state.getCollisionShape(level, currentPos).isEmpty()) {
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
                 }
             }
             else
             {
-            if (isWorking)
-            {
-                isWorking = false;
-                sendData();
+                if (isWorking) {
+                    isWorking = false;
+                    sendData();
+                }
             }
         }
-        super.tick();
     }
-}
+
     @Override
-    protected void write(net.minecraft.nbt.CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries, boolean clientPacket) {
+    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.write(tag, registries, clientPacket);
         tag.putBoolean("IsWorking", this.isWorking);
     }
 
     @Override
-    protected void read(net.minecraft.nbt.CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries, boolean clientPacket) {
+    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.read(tag, registries, clientPacket);
         this.isWorking = tag.getBoolean("IsWorking");
     }
