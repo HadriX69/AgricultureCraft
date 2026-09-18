@@ -3,6 +3,7 @@ package com.hadrix.agriculture_craft;
 import com.hadrix.agriculture_craft.block.SprinklerBlock;
 import com.hadrix.agriculture_craft.block.SprinklerBlockEntity;
 import com.hadrix.agriculture_craft.block.SprinklerRenderer;
+import com.hadrix.agriculture_craft.block.banana_tree_block.*;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlock;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftKineticBlock;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
@@ -12,8 +13,10 @@ import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
@@ -86,6 +89,87 @@ public class AllBlocks {
             .blockEntity("sprinkler_entity" , SprinklerBlockEntity::new)
             .validBlocks(AllBlocks.SPRINKLER_BLOCK)
             .renderer(() -> SprinklerRenderer::new)
+            .register();
+
+    public static final BlockEntry<banana_tree_state_1> BANANA_TREE_STATE_1 = AgricultureCraft.REGISTRATE
+            .block("banana_tree_state_1", banana_tree_state_1::new)
+            .properties(p -> p.noCollission().noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_state_1_1"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_state_1_1")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_tree_state_2> BANANA_TREE_STATE_2 = AgricultureCraft.REGISTRATE
+            .block("banana_tree_state_2", banana_tree_state_2::new)
+            .properties(p -> p.noCollission().noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_state_2_1"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_state_2_1")))
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> BANANA_TRUNK_STATE_1 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_1", Block::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_1"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_1")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_trunk_state_2> BANANA_TRUNK_STATE_2 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_2", banana_trunk_state_2::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_2"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_2")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_trunk_state_3> BANANA_TRUNK_STATE_3 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_3", banana_trunk_state_3::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_3"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_3")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_trunk_state_4> BANANA_TRUNK_STATE_4 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_4", banana_trunk_state_4::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_4"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_4")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_trunk_state_5> BANANA_TRUNK_STATE_5 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_5", banana_trunk_state_5::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_5"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_5")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_trunk_state_6> BANANA_TRUNK_STATE_6 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_6", banana_trunk_state_6::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_6"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_6")))
+            .build()
+            .register();
+
+    public static final BlockEntry<banana_trunk_state_7> BANANA_TRUNK_STATE_7 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_7", banana_trunk_state_7::new)
+            .properties(p -> p.noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_7"))))
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_7")))
+            .build()
             .register();
 
     /**

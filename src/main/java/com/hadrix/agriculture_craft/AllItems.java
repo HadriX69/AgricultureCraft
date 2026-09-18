@@ -1,6 +1,7 @@
 package com.hadrix.agriculture_craft;
 
 import com.hadrix.agriculture_craft.item.AnemometerItem;
+import com.hadrix.agriculture_craft.item.SeasonometerItem;
 import com.hadrix.agriculture_craft.item.ThermometerItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
@@ -42,6 +43,11 @@ public class AllItems {
 
     public static final ItemEntry<ThermometerItem> THERMOMETER = AgricultureCraft.REGISTRATE
             .item("thermometer", ThermometerItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/thermometer_3d")))
+            .register();
+
+    public static final ItemEntry<SeasonometerItem> SEASONOMETER = AgricultureCraft.REGISTRATE
+            .item("seasonometer", SeasonometerItem::new)
             .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/thermometer_3d")))
             .register();
 

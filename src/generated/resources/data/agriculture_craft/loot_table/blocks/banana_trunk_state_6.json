@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "agriculture_craft:banana_trunk_state_6"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "agriculture_craft:blocks/banana_trunk_state_6"
+}
