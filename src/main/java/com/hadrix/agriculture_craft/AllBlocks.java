@@ -6,6 +6,7 @@ import com.hadrix.agriculture_craft.block.SprinklerRenderer;
 import com.hadrix.agriculture_craft.block.banana_tree_block.*;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlock;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftKineticBlock;
+import com.hadrix.agriculture_craft.tree.BananaTree;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.foundation.data.BlockStateGen;
@@ -18,6 +19,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 /**
@@ -94,83 +96,113 @@ public class AllBlocks {
     public static final BlockEntry<banana_tree_state_1> BANANA_TREE_STATE_1 = AgricultureCraft.REGISTRATE
             .block("banana_tree_state_1", banana_tree_state_1::new)
             .properties(p -> p.noCollission().noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_state_1_1"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_0"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_state_1_1")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_0")))
             .build()
             .register();
 
     public static final BlockEntry<banana_tree_state_2> BANANA_TREE_STATE_2 = AgricultureCraft.REGISTRATE
             .block("banana_tree_state_2", banana_tree_state_2::new)
             .properties(p -> p.noCollission().noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_state_2_1"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_1"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_state_2_1")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_1")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_1> BANANA_TRUNK_STATE_1 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_1", banana_trunk_state_1::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_1"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_8"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_1")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_8")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_2> BANANA_TRUNK_STATE_2 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_2", banana_trunk_state_2::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_2"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_7"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_2")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_7")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_3> BANANA_TRUNK_STATE_3 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_3", banana_trunk_state_3::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_3"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_6"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_3")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_6")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_4> BANANA_TRUNK_STATE_4 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_4", banana_trunk_state_4::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_4"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_5"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_4")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_5")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_5> BANANA_TRUNK_STATE_5 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_5", banana_trunk_state_5::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_5"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_4"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_5")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_4")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_6> BANANA_TRUNK_STATE_6 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_6", banana_trunk_state_6::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_6"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_3"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_6")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_3")))
             .build()
             .register();
 
     public static final BlockEntry<banana_trunk_state_7> BANANA_TRUNK_STATE_7 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_7", banana_trunk_state_7::new)
             .properties(p -> p.noOcclusion())
-            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_7"))))
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_2"))))
             .item()
-            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_trunck_block_7")))
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_2")))
             .build()
             .register();
+
+
+    public static final BlockEntry<BananaTree> BANANA_TREE = AgricultureCraft.REGISTRATE
+            .block("banana_tree", BananaTree::new)
+            .properties(p -> p.noOcclusion().randomTicks())
+            .blockstate((c, p) -> {
+                p.getVariantBuilder(c.get()).forAllStates(state -> {
+                    int age = state.getValue(BananaTree.AGE);
+
+                    // On dit à Registrate quel modèle 3D utiliser selon l'âge
+                    String modelName = switch (age) {
+                        case 0 -> "banana_tree_age_0";
+                        case 1 -> "banana_tree_age_1";
+                        case 2, 3 -> "banana_tree_age_3";
+                        case 4 -> "banana_tree_age_6";
+                        case 5 -> "banana_tree_age_7";
+                        case 6, 7 -> "banana_tree_age_8";
+                        default -> "banana_tree_age_8";
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(p.models().getExistingFile(p.modLoc("block/" + modelName)))
+                            .build();
+                });
+            })
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_0")))
+            .build()
+            .register();
+
 
     /**
      * Builds an "encased shaft" style model: a casing box inset by 2px on the rotation
