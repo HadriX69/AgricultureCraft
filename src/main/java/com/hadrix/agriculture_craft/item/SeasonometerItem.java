@@ -1,6 +1,7 @@
 package com.hadrix.agriculture_craft.item;
 
 import com.hadrix.agriculture_craft.ClimateManager;
+import com.hadrix.agriculture_craft.Season;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +25,22 @@ public class SeasonometerItem extends Item
             {
                 if (!level.isClientSide())
                 {
-                    player.displayClientMessage(Component.literal("§e Season : " + ClimateManager.GetSeasonName(level)), true);
+                    if(ClimateManager.GetCurrentSeason(level) == Season.SUMMER)
+                    {
+                        player.displayClientMessage(Component.literal("Season : §e" + ClimateManager.GetSeasonName(level)), true);
+                    }
+                    else if (ClimateManager.GetCurrentSeason(level) == Season.WINTER)
+                    {
+                        player.displayClientMessage(Component.literal("Season : §b" + ClimateManager.GetSeasonName(level)), true);
+                    }
+                    else if (ClimateManager.GetCurrentSeason(level) == Season.SPRING)
+                    {
+                        player.displayClientMessage(Component.literal("Season : §d" + ClimateManager.GetSeasonName(level)), true);
+                    }
+                    else if (ClimateManager.GetCurrentSeason(level) == Season.AUTUMN)
+                    {
+                        player.displayClientMessage(Component.literal("Season : §6" + ClimateManager.GetSeasonName(level)), true);
+                    }
                 }
 
                 if (level.isClientSide())

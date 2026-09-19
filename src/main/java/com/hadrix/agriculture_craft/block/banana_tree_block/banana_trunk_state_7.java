@@ -30,4 +30,8 @@ public class banana_trunk_state_7 extends Block
         return SHAPE;
     }
 
+    @Override
+    public SoundType getSoundType(BlockState state, LevelReader level, BlockPos pos, @Nullable Entity entity) {
+        return SoundType.WOOD;
+    }
 }

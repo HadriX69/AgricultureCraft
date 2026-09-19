@@ -16,6 +16,7 @@ import com.hadrix.agriculture_craft.datagen.AgricultureCraftMixingRecipeGen;
 import com.hadrix.agriculture_craft.datagen.AgricultureCraftPressingRecipeGen;
 import com.hadrix.agriculture_craft.datagen.AgricultureCraftSequencedAssemblyGen;
 import com.hadrix.agriculture_craft.datagen.AgricultureCraftWashingRecipeGen;
+import com.hadrix.agriculture_craft.util.ModItemProprieties;
 import com.simibubi.create.content.kinetics.base.ShaftVisual;
 import com.tterrag.registrate.providers.ProviderType;
 import net.createmod.ponder.foundation.PonderIndex;
@@ -88,6 +89,7 @@ public class AgricultureCraft {
             // Ponder is client-only
             PonderIndex.addPlugin(new AgricultureCraftPonderPlugin());
             ModPartialModels.init();
+            ModItemProprieties.addCustomItemProprieties();
         });
     }
 

@@ -109,8 +109,8 @@ public class AllBlocks {
             .build()
             .register();
 
-    public static final BlockEntry<Block> BANANA_TRUNK_STATE_1 = AgricultureCraft.REGISTRATE
-            .block("banana_trunk_state_1", Block::new)
+    public static final BlockEntry<banana_trunk_state_1> BANANA_TRUNK_STATE_1 = AgricultureCraft.REGISTRATE
+            .block("banana_trunk_state_1", banana_trunk_state_1::new)
             .properties(p -> p.noOcclusion())
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_trunck_block_1"))))
             .item()

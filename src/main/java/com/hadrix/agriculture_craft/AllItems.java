@@ -7,6 +7,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 
 /**
  * Item registration. Each item overrides its model to borrow a vanilla texture, so the
@@ -48,7 +49,27 @@ public class AllItems {
 
     public static final ItemEntry<SeasonometerItem> SEASONOMETER = AgricultureCraft.REGISTRATE
             .item("seasonometer", SeasonometerItem::new)
-            .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/thermometer_3d")))
+            .model((c, p) -> {
+
+                p.generated(c::getEntry, AgricultureCraft.asResource("item/seasonometer_default_t"))
+
+                        .override()
+                        .predicate(AgricultureCraft.asResource("season"), 1.0f)
+                        .model(new ModelFile.UncheckedModelFile(AgricultureCraft.asResource("item/seasonometer_summer_t")))
+                        .end()
+                        .override()
+                        .predicate(AgricultureCraft.asResource("season"), 2.0f)
+                        .model(new ModelFile.UncheckedModelFile(AgricultureCraft.asResource("item/seasonometer_autumn_t")))
+                        .end()
+                        .override()
+                        .predicate(AgricultureCraft.asResource("season"), 3.0f)
+                        .model(new ModelFile.UncheckedModelFile(AgricultureCraft.asResource("item/seasonometer_winter_t")))
+                        .end()
+                        .override()
+                        .predicate(AgricultureCraft.asResource("season"), 4.0f)
+                        .model(new ModelFile.UncheckedModelFile(AgricultureCraft.asResource("item/seasonometer_spring_t")))
+                        .end();
+            })
             .register();
 
 

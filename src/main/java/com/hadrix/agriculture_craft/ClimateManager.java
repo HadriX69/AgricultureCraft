@@ -47,7 +47,7 @@ public class ClimateManager
                 state.is(Blocks.LAVA);
     }
 
-    public static Season getCurrentSeason(Level level)
+    public static Season GetCurrentSeason(Level level)
     {
         long day = level.getDayTime() / 24000;
         int dayInYear = (int) (day % DAYS_PER_YEAR);
@@ -81,7 +81,7 @@ public class ClimateManager
         float baseTemp = level.getBiome(blockPos).value().getBaseTemperature();
         float baseCelsius = (baseTemp * 25.0f) - 5.0f;
         double y = blockPos.getY();
-        Season season = getCurrentSeason(level);
+        Season season = GetCurrentSeason(level);
         float seasonOffset = season.getTempModifier();
         float localOffset = calculateLocalHeatSources(level, blockPos, 10);
 

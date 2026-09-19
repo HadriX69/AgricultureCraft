@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "agriculture_craft:item/seasonometer_summer_t",
+      "predicate": {
+        "agriculture_craft:season": 1.0
+      }
+    },
+    {
+      "model": "agriculture_craft:item/seasonometer_autumn_t",
+      "predicate": {
+        "agriculture_craft:season": 2.0
+      }
+    },
+    {
+      "model": "agriculture_craft:item/seasonometer_winter_t",
+      "predicate": {
+        "agriculture_craft:season": 3.0
+      }
+    },
+    {
+      "model": "agriculture_craft:item/seasonometer_spring_t",
+      "predicate": {
+        "agriculture_craft:season": 4.0
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "agriculture_craft:item/seasonometer_default_t"
+  }
+}
