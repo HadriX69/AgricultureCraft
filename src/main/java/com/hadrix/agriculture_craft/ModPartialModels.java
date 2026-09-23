@@ -8,5 +8,13 @@ public class ModPartialModels {
             ResourceLocation.fromNamespaceAndPath("agriculture_craft", "block/sprinkler_helix")
     );
 
+    public static final PartialModel BANANA_TREE_LEAF = PartialModel.of(
+            ResourceLocation.fromNamespaceAndPath("agriculture_craft", "block/banana_tree_leaf")
+    );
+
+    public static final PartialModel BANANA_TREE_GOLD_LEAF = PartialModel.of(
+            ResourceLocation.fromNamespaceAndPath("agriculture_craft", "block/banana_tree_golden_leaf")
+    );
+
     public static void init() {}
 }

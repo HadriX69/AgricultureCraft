@@ -23,6 +23,9 @@
     },
     "age=7": {
       "model": "agriculture_craft:block/banana_tree_age_8"
+    },
+    "age=8": {
+      "model": "agriculture_craft:block/banana_tree_age_8"
     }
   }
 }

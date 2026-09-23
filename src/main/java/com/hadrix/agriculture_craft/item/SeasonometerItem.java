@@ -2,6 +2,7 @@ package com.hadrix.agriculture_craft.item;
 
 import com.hadrix.agriculture_craft.ClimateManager;
 import com.hadrix.agriculture_craft.Season;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -25,21 +26,43 @@ public class SeasonometerItem extends Item
             {
                 if (!level.isClientSide())
                 {
-                    if(ClimateManager.GetCurrentSeason(level) == Season.SUMMER)
+                    Enum<Season> ActualSeason = ClimateManager.GetCurrentSeason(level);
+
+                    if(ActualSeason == Season.SUMMER)
                     {
-                        player.displayClientMessage(Component.literal("Season : §e" + ClimateManager.GetSeasonName(level)), true);
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.seasonometer.season")
+                                        .append(Component.literal(" : " + ClimateManager.GetSeasonName(level)))
+                                        .withStyle(ChatFormatting.YELLOW),
+                                true
+                        );
                     }
-                    else if (ClimateManager.GetCurrentSeason(level) == Season.WINTER)
+                    else if (ActualSeason == Season.WINTER)
                     {
-                        player.displayClientMessage(Component.literal("Season : §b" + ClimateManager.GetSeasonName(level)), true);
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.seasonometer.season")
+                                        .append(Component.literal(" : " + ClimateManager.GetSeasonName(level)))
+                                        .withStyle(ChatFormatting.AQUA),
+                                true
+                        );
                     }
-                    else if (ClimateManager.GetCurrentSeason(level) == Season.SPRING)
+                    else if (ActualSeason == Season.SPRING)
                     {
-                        player.displayClientMessage(Component.literal("Season : §d" + ClimateManager.GetSeasonName(level)), true);
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.seasonometer.season")
+                                        .append(Component.literal(" : " + ClimateManager.GetSeasonName(level)))
+                                        .withStyle(ChatFormatting.LIGHT_PURPLE),
+                                true
+                        );
                     }
-                    else if (ClimateManager.GetCurrentSeason(level) == Season.AUTUMN)
+                    else if (ActualSeason == Season.AUTUMN)
                     {
-                        player.displayClientMessage(Component.literal("Season : §6" + ClimateManager.GetSeasonName(level)), true);
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.seasonometer.season")
+                                        .append(Component.literal(" : " + ClimateManager.GetSeasonName(level)))
+                                        .withStyle(ChatFormatting.GOLD),
+                                true
+                        );
                     }
                 }
 
@@ -50,4 +73,5 @@ public class SeasonometerItem extends Item
             }
         }
     }
+
 }

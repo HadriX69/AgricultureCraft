@@ -1,18 +1,31 @@
 package com.hadrix.agriculture_craft.tree;
 
+import com.hadrix.agriculture_craft.AgricultureCraft;
 import com.hadrix.agriculture_craft.AllBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
-public class BananaTree extends Block {
+import java.util.List;
+
+public class BananaTree extends Block implements EntityBlock {
 
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 8);
 
@@ -41,6 +54,14 @@ public class BananaTree extends Block {
     }
 
     @Override
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag)
+    {
+        tooltipComponents.add(Component.translatable("tooltip.agriculture_craft.banana_tree.season"));
+        tooltipComponents.add(Component.translatable("tooltip.agriculture_craft.banana_tree.temperature"));
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    }
+
+    @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context)
     {
         int currentAge = state.getValue(AGE);
@@ -52,8 +73,23 @@ public class BananaTree extends Block {
             case 4 -> SHAPE_AGE_4;
             case 5 -> SHAPE_AGE_5;
             case 6 -> SHAPE_AGE_ADULT;
+            case 7 -> SHAPE_AGE_ADULT;
             default -> SHAPE_AGE_ADULT;
         };
+    }
+
+    public void DoParticle(ServerLevel level, BlockPos pos)
+    {
+        level.sendParticles(ParticleTypes.HAPPY_VILLAGER,
+                pos.getX() + 0.5,
+                pos.getY() + 0.5,
+                pos.getZ() + 0.5,
+                5,
+                0.5,  // X
+                0.5,  // Y
+                0.5,  // Z
+                0.0   // Speed
+        );
     }
 
     @Override
@@ -65,29 +101,36 @@ public class BananaTree extends Block {
         if (random.nextInt(10) == 0) {
             if (light >= 9 && currentAge < 8) {
 
-                // Calcul de la position tout en haut en fonction de l'âge
                 BlockPos highestPos = pos.above(currentAge + 1);
 
-                // On vérifie si c'est bien de l'air (et non null)
                 if (level.isEmptyBlock(highestPos)) {
                     if (currentAge == 0) {
                         //level.setBlock(pos, AllBlocks.BANANA_TREE_STATE_2.getDefaultState(), 3);
 
                         level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 1), 3);
+
+                        DoParticle(level, pos);
                     }
                     else if (currentAge == 1) {
                         //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+
+
                         level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
 
                         level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 2), 3);
+
+                        DoParticle(level, pos);
                     }
                     else if (currentAge == 2)
                     {
                         //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+
                         level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
                         level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
 
                         level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 3), 3);
+
+                        DoParticle(level, pos);
                     }
                     else if (currentAge == 3)
                     {
@@ -101,6 +144,8 @@ public class BananaTree extends Block {
                         level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_5.getDefaultState(),3);
 
                         level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 4), 3);
+
+                        DoParticle(level, pos);
                     }
 
                     else if (currentAge == 4)
@@ -119,6 +164,7 @@ public class BananaTree extends Block {
 
                         level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 5), 3);
 
+                        DoParticle(level, pos);
                     }
 
                     else if (currentAge == 5)
@@ -138,9 +184,17 @@ public class BananaTree extends Block {
                         level.setBlock(pos.above(5),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
 
                         level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 6), 3);
+
+                        DoParticle(level, pos);
                     }
                 }
             }
         }
     }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return AllBlocks.BANANA_TREE_LEAF_ENTITY.create(pos, state);
+    }
+
 }

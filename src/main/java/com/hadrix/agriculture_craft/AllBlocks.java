@@ -1,5 +1,6 @@
 package com.hadrix.agriculture_craft;
 
+import com.hadrix.agriculture_craft.block.BananaTreeBlockEntity;
 import com.hadrix.agriculture_craft.block.SprinklerBlock;
 import com.hadrix.agriculture_craft.block.SprinklerBlockEntity;
 import com.hadrix.agriculture_craft.block.SprinklerRenderer;
@@ -201,6 +202,11 @@ public class AllBlocks {
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_0")))
             .build()
+            .register();
+
+    public static final BlockEntityEntry<BananaTreeBlockEntity> BANANA_TREE_LEAF_ENTITY = AgricultureCraft.REGISTRATE
+            .blockEntity("banana_tree_leaf_entity", BananaTreeBlockEntity::new)
+            .validBlocks(AllBlocks.BANANA_TREE)
             .register();
 
 

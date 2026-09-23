@@ -120,4 +120,11 @@ public class ClimateManager
     {
 
     }
+
+    public static void OnSave()
+    {
+
+    }
+
+
 }

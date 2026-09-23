@@ -37,5 +37,7 @@
   "item.agriculture_craft.seasonometer": "ɹǝʇǝɯouosɐǝS",
   "item.agriculture_craft.thermometer": "ɹǝʇǝɯoɯɹǝɥ⟘",
   "itemGroup.agriculture_craft": "ʇɟɐɹƆǝɹnʇןnɔıɹbⱯ",
-  "itemGroup.agriculture_craft.main_tab": "qɐ⟘ uıɐW"
+  "itemGroup.agriculture_craft.main_tab": "qɐ⟘ uıɐW",
+  "tooltip.agriculture_craft.banana_tree.season": "NW∩⟘∩Ɐ9§ 'ɹ§ᴚƎ⟘NIMq§ 'ɹ§ᴚƎWW∩Sǝ§ 'ɹ§⅁NIᴚԀSp§ : uosɐǝS",
+  "tooltip.agriculture_craft.banana_tree.temperature": "0Ɛㄣ§ puɐɹ§ 0Ɩq§ uǝǝʍʇǝᗺ : ǝɹnʇɐɹǝdɯǝ⟘"
 }

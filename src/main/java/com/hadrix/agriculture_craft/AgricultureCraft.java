@@ -40,6 +40,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -73,6 +74,8 @@ public class AgricultureCraft {
         modBus.addListener(this::onRegisterCapabilities);
 
         NeoForge.EVENT_BUS.addListener(AgricultureCraft::OnTick);
+        NeoForge.EVENT_BUS.addListener(AgricultureCraft::OnSave);
+        NeoForge.EVENT_BUS.addListener(AgricultureCraft::Onload);
     }
 
     public static ResourceLocation asResource(String path) {
@@ -153,6 +156,16 @@ public class AgricultureCraft {
         if (event.getEntity().level().isClientSide()) {
             ClimateManager.OnTick(Minecraft.getInstance());
         }
+
+    }
+
+    private static void OnSave(final LevelEvent.Save event)
+    {
+
+    }
+
+    private static void Onload(final LevelEvent.Load event)
+    {
 
     }
 }

@@ -1,7 +1,9 @@
 package com.hadrix.agriculture_craft.item;
 
 import com.hadrix.agriculture_craft.ClimateManager;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -14,6 +16,8 @@ public class ThermometerItem extends Item {
         super(properties);
     }
 
+    MutableComponent Temperature_Translation = Component.translatable("item.agriculture_craft.thermometer.temperature");
+
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         if (entity instanceof Player player) {
@@ -25,21 +29,41 @@ public class ThermometerItem extends Item {
                 // Run server-only logic (like potion effects or logic)
                 if (!level.isClientSide())
                 {
-                    if(ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) >= 30.0f)
-                    {
-                        player.displayClientMessage(Component.literal("§4 Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                    float temp = ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos());
+
+                    if (temp >= 30.0f) {
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.thermometer.temperature")
+                                        .append(Component.literal(" : " + temp))
+                                        .withStyle(ChatFormatting.DARK_RED),
+                                true
+                        );
                     }
-                    else if (ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) >= 20.0f && ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) <= 30.0f)
-                    {
-                        player.displayClientMessage(Component.literal("§c Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                    else if (temp >= 20.0f && temp <= 30.0f) {
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.thermometer.temperature")
+                                        .append(Component.literal(" : " + temp))
+                                        .withStyle(ChatFormatting.RED),
+                                true
+                        );
                     }
-                    else if (ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) <= 20.0f && ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) >= 0.0f)
+                    else if (temp <= 20.0f && temp >= 0.0f)
                     {
-                        player.displayClientMessage(Component.literal("§3 Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.thermometer.temperature")
+                                        .append(Component.literal(" : " + temp))
+                                        .withStyle(ChatFormatting.DARK_AQUA),
+                                true
+                        );
                     }
-                    else if (ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos()) <= 0.0f)
+                    else if (temp <= 0.0f)
                     {
-                        player.displayClientMessage(Component.literal("§b Temperature : " + ClimateManager.GetTemperature(entity.getCommandSenderWorld(), entity.getOnPos())), true);
+                        player.displayClientMessage(
+                                Component.translatable("item.agriculture_craft.thermometer.temperature")
+                                        .append(Component.literal(" : " + temp))
+                                        .withStyle(ChatFormatting.AQUA),
+                                true
+                        );
                     }
                 }
 
