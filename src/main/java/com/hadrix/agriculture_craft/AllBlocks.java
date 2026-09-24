@@ -1,9 +1,6 @@
 package com.hadrix.agriculture_craft;
 
-import com.hadrix.agriculture_craft.block.BananaTreeBlockEntity;
-import com.hadrix.agriculture_craft.block.SprinklerBlock;
-import com.hadrix.agriculture_craft.block.SprinklerBlockEntity;
-import com.hadrix.agriculture_craft.block.SprinklerRenderer;
+import com.hadrix.agriculture_craft.block.*;
 import com.hadrix.agriculture_craft.block.banana_tree_block.*;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlock;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftKineticBlock;
@@ -207,6 +204,19 @@ public class AllBlocks {
     public static final BlockEntityEntry<BananaTreeBlockEntity> BANANA_TREE_LEAF_ENTITY = AgricultureCraft.REGISTRATE
             .blockEntity("banana_tree_leaf_entity", BananaTreeBlockEntity::new)
             .validBlocks(AllBlocks.BANANA_TREE)
+            .renderer(() -> BananaTreeRenderer::new)
+            .register();
+
+    public static final BlockEntry<Block> BANANA_LEAVES = AgricultureCraft.REGISTRATE
+            .block("banana_leaves", Block::new)
+            .properties(p -> p.noCollission().noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_leaf"))))
+            .register();
+
+    public static final BlockEntry<Block> GOLDEN_BANANA_LEAVES = AgricultureCraft.REGISTRATE
+            .block("golden_banana_leaves", Block::new)
+            .properties(p -> p.noCollission().noOcclusion())
+            .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_golden_leaf"))))
             .register();
 
 

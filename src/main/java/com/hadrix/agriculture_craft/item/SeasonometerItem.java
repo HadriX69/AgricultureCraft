@@ -73,5 +73,4 @@ public class SeasonometerItem extends Item
             }
         }
     }
-
 }

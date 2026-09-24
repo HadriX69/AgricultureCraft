@@ -2,23 +2,29 @@ package com.hadrix.agriculture_craft.tree;
 
 import com.hadrix.agriculture_craft.AgricultureCraft;
 import com.hadrix.agriculture_craft.AllBlocks;
+import com.hadrix.agriculture_craft.block.BananaTreeBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Interaction;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -90,6 +96,125 @@ public class BananaTree extends Block implements EntityBlock {
                 0.5,  // Z
                 0.0   // Speed
         );
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        int TreeAge = 6;
+        if(level.getBlockEntity(pos) instanceof BananaTreeBlockEntity bananaTreeBlockEntity && stack.is(Items.BONE_MEAL))
+        {
+            if(state != null)
+            {
+            int light = level.getMaxLocalRawBrightness(pos.above());
+
+            int currentAge = state.getValue(AGE);
+
+                if (light >= 9 && currentAge < 8) {
+
+                    BlockPos highestPos = pos.above(currentAge + 1);
+                    TreeAge = currentAge;
+
+                    if (level.isEmptyBlock(highestPos)) {
+                        if (currentAge == 0) {
+                            //level.setBlock(pos, AllBlocks.BANANA_TREE_STATE_2.getDefaultState(), 3);
+
+                            level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 1), 3);
+
+
+                            if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
+                                DoParticle(serverLevel, pos);
+                            }
+
+                        } else if (currentAge == 1) {
+                            //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+
+
+                            level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
+
+                            level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 2), 3);
+
+                            if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
+                                DoParticle(serverLevel, pos);
+                            }
+
+                        } else if (currentAge == 2) {
+                            //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+                            level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
+
+                            level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 3), 3);
+
+                            if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
+                                DoParticle(serverLevel, pos);
+                            }
+
+                        } else if (currentAge == 3) {
+
+                            //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
+
+                            level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(3), AllBlocks.BANANA_TRUNK_STATE_5.getDefaultState(), 3);
+
+                            level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 4), 3);
+
+                            if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
+                                DoParticle(serverLevel, pos);
+                            }
+
+                        } else if (currentAge == 4) {
+
+                            //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
+
+                            level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(3), AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(4), AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(), 3);
+
+                            level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 5), 3);
+
+                            if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
+                                DoParticle(serverLevel, pos);
+                            }
+
+                        } else if (currentAge == 5) {
+
+                            //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_1.getDefaultState(),3);
+
+                            level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(3), AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(4), AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(), 3);
+
+                            level.setBlock(pos.above(5), AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(), 3);
+
+                            level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 6), 3);
+
+                            if (!level.isClientSide() && level instanceof ServerLevel serverLevel) {
+                                DoParticle(serverLevel, pos);
+                            }
+                        }
+                    }
+                    }
+                }
+        }
+        if(TreeAge <= 5)
+        {
+            return ItemInteractionResult.SUCCESS;
+        }
+        else
+        {
+            return ItemInteractionResult.FAIL;
+        }
     }
 
     @Override
