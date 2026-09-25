@@ -1,23 +1,18 @@
 package com.hadrix.agriculture_craft.tree;
 
-import com.hadrix.agriculture_craft.AgricultureCraft;
 import com.hadrix.agriculture_craft.AllBlocks;
 import com.hadrix.agriculture_craft.block.BananaTreeBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.Interaction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -221,99 +216,115 @@ public class BananaTree extends Block implements EntityBlock {
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int light = level.getMaxLocalRawBrightness(pos.above());
 
+        BananaTreeBlockEntity blockEntity = (BananaTreeBlockEntity) level.getBlockEntity(pos);
+
         int currentAge = state.getValue(AGE);
+        BlockPos highestPos = pos.above(currentAge + 1);
 
-        if (random.nextInt(10) == 0) {
-            if (light >= 9 && currentAge < 8) {
-
-                BlockPos highestPos = pos.above(currentAge + 1);
-
-                if (level.isEmptyBlock(highestPos)) {
-                    if (currentAge == 0) {
-                        //level.setBlock(pos, AllBlocks.BANANA_TREE_STATE_2.getDefaultState(), 3);
-
-                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 1), 3);
-
-                        DoParticle(level, pos);
-                    }
-                    else if (currentAge == 1) {
-                        //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
-
-
-                        level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
-
-                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 2), 3);
-
-                        DoParticle(level, pos);
-                    }
-                    else if (currentAge == 2)
-                    {
-                        //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
-
-                        level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
-                        level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
-
-                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 3), 3);
-
-                        DoParticle(level, pos);
-                    }
-                    else if (currentAge == 3)
-                    {
-
-                        //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
-
-                        level.setBlock(pos.above(1),AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(),3);
-
-                        level.setBlock(pos.above(2),AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(),3);
-
-                        level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_5.getDefaultState(),3);
-
-                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 4), 3);
-
-                        DoParticle(level, pos);
-                    }
-
-                    else if (currentAge == 4)
-
-                    {
-
-                        //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
-
-                        level.setBlock(pos.above(1),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
-
-                        level.setBlock(pos.above(2),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
-
-                        level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
-
-                        level.setBlock(pos.above(4),AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(),3);
-
-                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 5), 3);
-
-                        DoParticle(level, pos);
-                    }
-
-                    else if (currentAge == 5)
-
-                    {
-
-                        //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_1.getDefaultState(),3);
-
-                        level.setBlock(pos.above(1),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
-
-                        level.setBlock(pos.above(2),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
-
-                        level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
-
-                        level.setBlock(pos.above(4),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
-
-                        level.setBlock(pos.above(5),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
-
-                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 6), 3);
-
-                        DoParticle(level, pos);
-                    }
-                }
-            }
+//        if (random.nextInt(10) == 0) {
+//            if (light >= 9 && currentAge < 8) {
+//
+//                BlockPos highestPos = pos.above(currentAge + 1);
+//
+//                if (level.isEmptyBlock(highestPos)) {
+//                    if (currentAge == 0) {
+//                        //level.setBlock(pos, AllBlocks.BANANA_TREE_STATE_2.getDefaultState(), 3);
+//
+//                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 1), 3);
+//
+//                        DoParticle(level, pos);
+//                    }
+//                    else if (currentAge == 1) {
+//                        //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+//
+//
+//                        level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
+//
+//                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 2), 3);
+//
+//                        DoParticle(level, pos);
+//                    }
+//                    else if (currentAge == 2)
+//                    {
+//                        //level.setBlock(pos, AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+//
+//                        level.setBlock(pos.above(1), AllBlocks.BANANA_TRUNK_STATE_6.getDefaultState(), 3);
+//                        level.setBlock(pos.above(2), AllBlocks.BANANA_TRUNK_STATE_7.getDefaultState(), 3);
+//
+//                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 3), 3);
+//
+//                        DoParticle(level, pos);
+//                    }
+//                    else if (currentAge == 3)
+//                    {
+//
+//                        //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(1),AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(2),AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_5.getDefaultState(),3);
+//
+//                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 4), 3);
+//
+//                        DoParticle(level, pos);
+//                    }
+//
+//                    else if (currentAge == 4)
+//
+//                    {
+//
+//                        //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(1),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(2),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(4),AllBlocks.BANANA_TRUNK_STATE_4.getDefaultState(),3);
+//
+//                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 5), 3);
+//
+//                        DoParticle(level, pos);
+//                    }
+//
+//                    else if (currentAge == 5)
+//
+//                    {
+//
+//                        //level.setBlock(pos,AllBlocks.BANANA_TRUNK_STATE_1.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(1),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(2),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(3),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(4),AllBlocks.BANANA_TRUNK_STATE_2.getDefaultState(),3);
+//
+//                        level.setBlock(pos.above(5),AllBlocks.BANANA_TRUNK_STATE_3.getDefaultState(),3);
+//
+//                        level.setBlock(pos, level.getBlockState(pos).setValue(AGE, 6), 3);
+//
+//                        DoParticle(level, pos);
+//                    }
+//                }
+//            }
+//        }
+        if (random.nextInt(3) == 0 && blockEntity.isGolden())
+        {
+//            level.sendParticles(ParticleTypes.GLOW,
+//                    pos.getX() + 0.5,
+//                    highestPos.getY(),
+//                    pos.getZ() + 0.5,
+//                    5,
+//                    3,  // X
+//                    0.5,  // Y
+//                    3,  // Z
+//                    0.0   // Speed
+//            );
         }
     }
 
