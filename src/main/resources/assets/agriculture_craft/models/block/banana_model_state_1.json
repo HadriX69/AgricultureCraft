@@ -9,7 +9,7 @@
 	"elements": [
 		{
 			"from": [7, 13, 7],
-			"to": [9, 15, 18],
+			"to": [9, 15, 23],
 			"rotation": {"angle": 0, "axis": "y", "origin": [7, 13, 14]},
 			"faces": {
 				"north": {"uv": [2, 8, 3, 9], "texture": "#0"},
