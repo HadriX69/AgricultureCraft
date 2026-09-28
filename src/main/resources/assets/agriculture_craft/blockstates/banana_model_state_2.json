@@ -1,0 +1,20 @@
+{
+  "variants":
+  {
+    "facing=north": {
+      "model": "agriculture_craft:block/banana_model_state_2_t"
+    },
+    "facing=south": {
+      "model": "agriculture_craft:block/banana_model_state_2_t",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "agriculture_craft:block/banana_model_state_2_t",
+      "y": 90
+    },
+  "facing=west": {
+    "model": "agriculture_craft:block/banana_model_state_2_t",
+    "y": 270
+  }
+  }
+}

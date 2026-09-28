@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "maturity=0": { "model": "agriculture_craft:block/banana_model_state_1" },
+    "maturity=1": { "model": "agriculture_craft:block/banana_model_state_2" }
+  }
+}

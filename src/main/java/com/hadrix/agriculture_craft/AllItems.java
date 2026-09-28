@@ -1,6 +1,7 @@
 package com.hadrix.agriculture_craft;
 
 import com.hadrix.agriculture_craft.item.AnemometerItem;
+import com.hadrix.agriculture_craft.item.BananaItem;
 import com.hadrix.agriculture_craft.item.SeasonometerItem;
 import com.hadrix.agriculture_craft.item.ThermometerItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -70,6 +71,11 @@ public class AllItems {
                         .model(new ModelFile.UncheckedModelFile(AgricultureCraft.asResource("item/seasonometer_spring_t")))
                         .end();
             })
+            .register();
+
+    public static final ItemEntry<BananaItem> BANANA_ITEM = AgricultureCraft.REGISTRATE
+            .item("banana_item.json", BananaItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/banana_item")))
             .register();
 
 

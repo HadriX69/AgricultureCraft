@@ -17,6 +17,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 
@@ -217,6 +218,35 @@ public class AllBlocks {
             .block("golden_banana_leaves", Block::new)
             .properties(p -> p.noCollission().noOcclusion())
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_golden_leaf"))))
+            .register();
+
+
+        public static final BlockEntry<Banana> BANANA = AgricultureCraft.REGISTRATE
+            .block("banana", Banana::new)
+            .properties(p -> p.noOcclusion().randomTicks())
+                .blockstate((c, p) -> {
+                    p.getVariantBuilder(c.get()).forAllStates(state -> {
+                        int maturity = state.getValue(Banana.MATURITY);
+
+                        Direction facing = state.getValue(Banana.FACING);
+
+                        String modelName = switch (maturity) {
+                            case 0 -> "banana_model_state_1";
+                            case 1 -> "banana_model_state_2";
+                            default -> "banana_model_state_1";
+                        };
+
+                        int rotationY = (int) facing.toYRot();
+
+                        return ConfiguredModel.builder()
+                                .modelFile(p.models().getExistingFile(p.modLoc("block/" + modelName)))
+                                .rotationY(rotationY)
+                                .build();
+                    });
+                })
+            .item()
+            .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_model_state_1")))
+            .build()
             .register();
 
 

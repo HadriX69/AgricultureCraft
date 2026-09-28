@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,maturity=0": {
+      "model": "agriculture_craft:block/banana_model_state_1",
+      "y": 270
+    },
+    "facing=east,maturity=1": {
+      "model": "agriculture_craft:block/banana_model_state_2",
+      "y": 270
+    },
+    "facing=north,maturity=0": {
+      "model": "agriculture_craft:block/banana_model_state_1",
+      "y": 180
+    },
+    "facing=north,maturity=1": {
+      "model": "agriculture_craft:block/banana_model_state_2",
+      "y": 180
+    },
+    "facing=south,maturity=0": {
+      "model": "agriculture_craft:block/banana_model_state_1"
+    },
+    "facing=south,maturity=1": {
+      "model": "agriculture_craft:block/banana_model_state_2"
+    },
+    "facing=west,maturity=0": {
+      "model": "agriculture_craft:block/banana_model_state_1",
+      "y": 90
+    },
+    "facing=west,maturity=1": {
+      "model": "agriculture_craft:block/banana_model_state_2",
+      "y": 90
+    }
+  }
+}
