@@ -12,13 +12,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BannerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -81,6 +84,17 @@ public class BananaTree extends Block implements EntityBlock {
             case 6 -> SHAPE_AGE_ADULT;
             case 7 -> SHAPE_AGE_ADULT;
             default -> SHAPE_AGE_ADULT;
+        };
+    }
+
+    @Override
+    public SoundType getSoundType(BlockState state, LevelReader level, BlockPos pos, @Nullable Entity entity) {
+        int currentAge = state.getValue(AGE);
+
+        return switch (currentAge) {
+            case 0,1 -> SoundType.GRASS;
+            case 2,3,4,5,6,7 -> SoundType.WOOD;
+            default -> SoundType.WOOD;
         };
     }
 
