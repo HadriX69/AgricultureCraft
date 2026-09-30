@@ -1,6 +1,7 @@
 package com.hadrix.agriculture_craft;
 
 import com.hadrix.agriculture_craft.block.*;
+import com.hadrix.agriculture_craft.tree.PottedBananaTree;
 import com.hadrix.agriculture_craft.block.banana_tree_block.*;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlock;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftKineticBlock;
@@ -17,6 +18,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -247,6 +249,33 @@ public class AllBlocks {
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_model_state_1")))
             .build()
+            .register();
+
+    public static final BlockEntry<PottedBananaTree> BANANA_TREE_POTTED = AgricultureCraft.REGISTRATE
+            .block("banana_tree_potted", properties -> new PottedBananaTree(
+                    () -> (FlowerPotBlock) Blocks.FLOWER_POT,
+                    BANANA_TREE, // Assure-toi que c'est bien la référence à ton bloc pousse
+                    properties
+            ))
+            .properties(p -> p.instabreak().noOcclusion().randomTicks())
+            .blockstate((c, p) -> {
+                p.getVariantBuilder(c.get()).forAllStates(state -> {
+                    int potted_age = state.getValue(PottedBananaTree.POTTED_AGE);
+
+                    String modelName = switch (potted_age) {
+                        case 0 -> "flower_pot_banana_tree_state_1";
+                        case 1 -> "flower_pot_banana_tree_state_2";
+                        default -> "flower_pot_banana_tree_state_1";
+                    };
+
+                    return ConfiguredModel.builder()
+                            .modelFile(p.models().getExistingFile(p.modLoc("block/" + modelName)))
+                            .build();
+                });
+            })
+            .loot((lt, block) -> {
+                lt.dropPottedContents(block);
+            })
             .register();
 
 

@@ -1,30 +1,57 @@
 {
   "variants": {
-    "age=0": {
+    "age=0,potted=0": {
       "model": "agriculture_craft:block/banana_tree_age_0"
     },
-    "age=1": {
+    "age=0,potted=1": {
+      "model": "agriculture_craft:block/banana_tree_age_0"
+    },
+    "age=1,potted=0": {
       "model": "agriculture_craft:block/banana_tree_age_1"
     },
-    "age=2": {
+    "age=1,potted=1": {
+      "model": "agriculture_craft:block/banana_tree_age_1"
+    },
+    "age=2,potted=0": {
       "model": "agriculture_craft:block/banana_tree_age_3"
     },
-    "age=3": {
+    "age=2,potted=1": {
       "model": "agriculture_craft:block/banana_tree_age_3"
     },
-    "age=4": {
+    "age=3,potted=0": {
+      "model": "agriculture_craft:block/banana_tree_age_3"
+    },
+    "age=3,potted=1": {
+      "model": "agriculture_craft:block/banana_tree_age_3"
+    },
+    "age=4,potted=0": {
       "model": "agriculture_craft:block/banana_tree_age_6"
     },
-    "age=5": {
+    "age=4,potted=1": {
+      "model": "agriculture_craft:block/banana_tree_age_6"
+    },
+    "age=5,potted=0": {
       "model": "agriculture_craft:block/banana_tree_age_7"
     },
-    "age=6": {
+    "age=5,potted=1": {
+      "model": "agriculture_craft:block/banana_tree_age_7"
+    },
+    "age=6,potted=0": {
       "model": "agriculture_craft:block/banana_tree_age_8"
     },
-    "age=7": {
+    "age=6,potted=1": {
       "model": "agriculture_craft:block/banana_tree_age_8"
     },
-    "age=8": {
+    "age=7,potted=0": {
+      "model": "agriculture_craft:block/banana_tree_age_8"
+    },
+    "age=7,potted=1": {
+      "model": "agriculture_craft:block/banana_tree_age_8"
+    },
+    "age=8,potted=0": {
+      "model": "agriculture_craft:block/banana_tree_age_8"
+    },
+    "age=8,potted=1": {
       "model": "agriculture_craft:block/banana_tree_age_8"
     }
   }

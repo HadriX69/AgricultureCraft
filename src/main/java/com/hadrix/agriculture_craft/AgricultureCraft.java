@@ -29,6 +29,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -83,7 +85,13 @@ public class AgricultureCraft {
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
-        LOGGER.info("Common setup...");
+        //LOGGER.info("Common setup...");
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(
+                    AllBlocks.BANANA_TREE.getId(),
+                    AllBlocks.BANANA_TREE_POTTED
+            );
+        });
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {

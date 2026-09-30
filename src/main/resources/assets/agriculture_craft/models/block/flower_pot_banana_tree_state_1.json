@@ -1,7 +1,8 @@
 {
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
-	"ambientocclusion": false,
+    "ambientocclusion": false,
+    "render_type": "minecraft:cutout",
 	"textures": {
 		"0": "agriculture_craft:block/banana_tree_state_1_1_t",
 		"particle": "agriculture_craft:block/banana_tree_state_1_1_t",

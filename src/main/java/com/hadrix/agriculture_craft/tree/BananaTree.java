@@ -1,7 +1,6 @@
 package com.hadrix.agriculture_craft.tree;
 
 import com.hadrix.agriculture_craft.AllBlocks;
-import com.hadrix.agriculture_craft.AllItems;
 import com.hadrix.agriculture_craft.block.Banana;
 import com.hadrix.agriculture_craft.block.BananaTreeBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -18,14 +17,11 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BannerBlockEntity;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -37,6 +33,7 @@ import java.util.List;
 public class BananaTree extends Block implements EntityBlock {
 
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 8);
+    public static final IntegerProperty POTTED_AGE = IntegerProperty.create("potted", 0,1);
 
 
     public static final VoxelShape SHAPE_AGE_0 = Block.box(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
@@ -55,11 +52,12 @@ public class BananaTree extends Block implements EntityBlock {
         super(properties);
 
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(POTTED_AGE, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
+        builder.add(AGE, POTTED_AGE);
     }
 
     @Override
@@ -96,6 +94,15 @@ public class BananaTree extends Block implements EntityBlock {
             case 2,3,4,5,6,7 -> SoundType.WOOD;
             default -> SoundType.WOOD;
         };
+    }
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        BlockPos bottomBlockPos = new BlockPos(pos.getX(), pos.getY() - 1,pos.getZ());
+        if(level.getBlockState(bottomBlockPos).is(Blocks.DIRT) || level.getBlockState(bottomBlockPos).is(Blocks.GRASS_BLOCK))
+        {
+
+        }
     }
 
     public void DoParticle(ServerLevel level, BlockPos pos)

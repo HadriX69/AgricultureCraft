@@ -2,6 +2,7 @@
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
+    "render_type": "minecraft:cutout",
 	"texture_size": [50, 75],
 	"textures": {
 		"3": "minecraft:block/flower_pot",

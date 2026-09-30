@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "potted_age=0": { "model": "agriculture_craft:block/flower_pot_banana_tree_state_1" },
+    "potted_age=1": { "model": "agriculture_craft:block/flower_pot_banana_tree_state_2" }
+  }
+}
