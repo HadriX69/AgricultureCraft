@@ -5,8 +5,12 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -40,9 +44,8 @@ public class SprinklerBlock extends BaseEntityBlock
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        // On vérifie que le type correspond bien à notre SprinklerBlockEntity
+
         return createTickerHelper(blockEntityType, AllBlocks.SPRINKLER_BLOCK_ENTITY.get(),
-                // Si oui, on appelle la méthode tick() de notre BlockEntity
                 (lvl, pos, blockState, blockEntity) -> blockEntity.tick()
         );
     }

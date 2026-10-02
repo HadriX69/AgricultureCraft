@@ -37,6 +37,8 @@
   "item.agriculture_craft.agriculture_craft_result": "Agriculture Craft Result",
   "item.agriculture_craft.anemometer": "Anemometer",
   "item.agriculture_craft.anemometer.tooltip.summary": "This Item is still in development",
+  "item.agriculture_craft.thermometer.temperature": "Temperature : ",
+  "item.agriculture_craft.seasonometer.season": "Season : ",
   "item.agriculture_craft.banana_item.json": "Banana Item.json",
   "item.agriculture_craft.incomplete_example": "Incomplete Example",
   "item.agriculture_craft.seasonometer": "Seasonometer",

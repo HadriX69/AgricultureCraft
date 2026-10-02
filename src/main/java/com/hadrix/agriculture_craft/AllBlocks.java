@@ -1,6 +1,7 @@
 package com.hadrix.agriculture_craft;
 
 import com.hadrix.agriculture_craft.block.*;
+import com.hadrix.agriculture_craft.item.SprinklerItem;
 import com.hadrix.agriculture_craft.tree.PottedBananaTree;
 import com.hadrix.agriculture_craft.block.banana_tree_block.*;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlock;
@@ -82,7 +83,7 @@ public class AllBlocks {
             .block("sprinkler", SprinklerBlock::new)
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/sprinkler_block"))))
             .properties(p -> p.noOcclusion())
-            .item()
+            .item(SprinklerItem::new)
             .build()
             .register();
 

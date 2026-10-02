@@ -10,10 +10,16 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 
 public class SprinklerRenderer implements BlockEntityRenderer<SprinklerBlockEntity> {
 
     public SprinklerRenderer(BlockEntityRendererProvider.Context context) {
+    }
+
+    @Override
+    public AABB getRenderBoundingBox(SprinklerBlockEntity blockEntity) {
+        return new AABB(blockEntity.getBlockPos()).inflate(5.0D);
     }
 
     @Override

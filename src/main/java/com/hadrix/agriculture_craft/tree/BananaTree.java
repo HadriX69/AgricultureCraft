@@ -33,7 +33,7 @@ import java.util.List;
 public class BananaTree extends Block implements EntityBlock {
 
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 8);
-    public static final IntegerProperty POTTED_AGE = IntegerProperty.create("potted", 0,1);
+    public boolean CanGrow = false;
 
 
     public static final VoxelShape SHAPE_AGE_0 = Block.box(6.0, 0.0, 6.0, 10.0, 16.0, 10.0);
@@ -52,12 +52,11 @@ public class BananaTree extends Block implements EntityBlock {
         super(properties);
 
         this.registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
-        this.registerDefaultState(this.getStateDefinition().any().setValue(POTTED_AGE, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE, POTTED_AGE);
+        builder.add(AGE);
     }
 
     @Override
@@ -101,7 +100,11 @@ public class BananaTree extends Block implements EntityBlock {
         BlockPos bottomBlockPos = new BlockPos(pos.getX(), pos.getY() - 1,pos.getZ());
         if(level.getBlockState(bottomBlockPos).is(Blocks.DIRT) || level.getBlockState(bottomBlockPos).is(Blocks.GRASS_BLOCK))
         {
-
+            CanGrow = true;
+        }
+        else
+        {
+            CanGrow = false;
         }
     }
 
@@ -230,6 +233,7 @@ public class BananaTree extends Block implements EntityBlock {
         }
         if(TreeAge <= 5)
         {
+            stack.shrink(1);
             return ItemInteractionResult.SUCCESS;
         }
         else
@@ -239,7 +243,8 @@ public class BananaTree extends Block implements EntityBlock {
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
+    {
         int light = level.getMaxLocalRawBrightness(pos.above());
 
         BananaTreeBlockEntity blockEntity = (BananaTreeBlockEntity) level.getBlockEntity(pos);
@@ -248,7 +253,7 @@ public class BananaTree extends Block implements EntityBlock {
         BlockPos highestPos = pos.above(currentAge + 1);
 
         if (random.nextInt(10) == 0) {
-            if (light >= 9 && currentAge < 8) {
+            if (light >= 9 && currentAge < 8 && CanGrow) {
 
                 //BlockPos highestPos = pos.above(currentAge + 1);
 
@@ -358,17 +363,15 @@ public class BananaTree extends Block implements EntityBlock {
         }
         if(random.nextInt(10) == 0 && currentAge == 7)
         {
-            boolean hasGeneratedBananas = false; // Pour savoir si on a bien fait pousser au moins une banane
+            boolean hasGeneratedBananas = false;
             Direction facing = Direction.NORTH;
 
-            // 1. On utilise <= 1 pour bien faire -1, 0 et 1 (carré de 3x3)
             for(int x = -1; x <= 1; x++)
             {
                 for(int z = -1; z <= 1; z++)
                 {
-                    // 2. Le trou au milieu ! Si X et Z sont à 0, c'est le tronc, on passe à la suite.
                     if (x == 0 && z == 0) {
-                        continue; // Le mot-clé 'continue' dit à la boucle de passer au tour suivant
+                        continue;
                     }
 
                     BlockPos bananaPos = new BlockPos(highestPos.getX() + x, highestPos.getY() - 3, highestPos.getZ() + z);
