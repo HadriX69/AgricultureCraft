@@ -83,6 +83,7 @@ public class AllBlocks {
             .block("sprinkler", SprinklerBlock::new)
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/sprinkler_block"))))
             .properties(p -> p.noOcclusion())
+            .onRegister(b -> BlockStressValues.IMPACTS.register(b, () -> 128))
             .item(SprinklerItem::new)
             .build()
             .register();

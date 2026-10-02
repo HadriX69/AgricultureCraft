@@ -1,5 +1,7 @@
 package com.hadrix.agriculture_craft;
 
+import com.hadrix.agriculture_craft.block.SprinklerBlockEntity;
+import com.hadrix.agriculture_craft.block.SprinklerRenderer;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftGeneratorBlockEntity;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftKineticBlockEntity;
 import com.hadrix.agriculture_craft.content.kinetics.AgricultureCraftShaftRenderer;
@@ -22,6 +24,15 @@ public class AllBlockEntityTypes {
             .validBlock(AllBlocks.EXAMPLE_KINETIC_BLOCK)
             // fallback renderer if flywheel is not available
             .renderer(() -> AgricultureCraftShaftRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SprinklerBlockEntity> SPRINKLER_KINETIC = AgricultureCraft.REGISTRATE
+            .blockEntity("agriculture_craft_sprinkler_kinetic", SprinklerBlockEntity::new)
+            // visual for flywheel renderer
+            .visual(() -> ShaftVisual::new)
+            .validBlock(AllBlocks.SPRINKLER_BLOCK)
+            // fallback renderer if flywheel is not available
+            .renderer(() -> SprinklerRenderer::new)
             .register();
 
     /**

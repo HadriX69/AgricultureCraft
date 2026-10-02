@@ -1,9 +1,9 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "particle": "agriculture_craft:block/sprinkler_block_down_up",
-    "down": "agriculture_craft:block/sprinkler_block_down_up",
-    "up": "agriculture_craft:block/sprinkler_block_down_up",
+    "particle": "agriculture_craft:block/sprinkler_block_down",
+    "down": "agriculture_craft:block/sprinkler_block_down",
+    "up": "agriculture_craft:block/sprinkler_block_down",
     "north": "agriculture_craft:block/sprinkler_block_face",
     "south": "agriculture_craft:block/sprinkler_block_face",
     "west": "agriculture_craft:block/sprinkler_block_face",
