@@ -3,20 +3,9 @@ package com.hadrix.agriculture_craft;
 import java.util.concurrent.CompletableFuture;
 
 import com.hadrix.agriculture_craft.content.ponder.AgricultureCraftPonderPlugin;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftCompactingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftCrushingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftCuttingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftDeployingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftEmptyingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftFillingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftLangMerger;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftHauntingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftMillingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftMixingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftPressingRecipeGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftSequencedAssemblyGen;
-import com.hadrix.agriculture_craft.datagen.AgricultureCraftWashingRecipeGen;
+import com.hadrix.agriculture_craft.datagen.*;
 import com.hadrix.agriculture_craft.util.ModItemProprieties;
+import com.simibubi.create.api.data.recipe.BaseRecipeProvider;
 import com.tterrag.registrate.providers.ProviderType;
 import net.createmod.ponder.foundation.PonderIndex;
 import com.simibubi.create.foundation.data.CreateRegistrate;
@@ -138,18 +127,18 @@ public class AgricultureCraft {
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
         //ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        generator.addProvider(event.includeServer(), new AgricultureCraftSequencedAssemblyGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftWashingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftHauntingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftCrushingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftMillingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftPressingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftCuttingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftMixingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftCompactingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftFillingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftEmptyingRecipeGen(output, registries));
-        generator.addProvider(event.includeServer(), new AgricultureCraftDeployingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftSequencedAssemblyGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftWashingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftHauntingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftCrushingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftMillingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftPressingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftCuttingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftMixingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftCompactingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftFillingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftEmptyingRecipeGen(output, registries));
+//        generator.addProvider(event.includeServer(), new AgricultureCraftDeployingRecipeGen(output, registries));
     }
 
     private void onRegisterCapabilities(RegisterCapabilitiesEvent event) {

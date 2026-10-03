@@ -36,9 +36,8 @@ public class SprinklerRenderer extends KineticBlockEntityRenderer<SprinklerBlock
         BlockState state = blockEntity.getBlockState();
         float angle = getAngleForBe(blockEntity, blockEntity.getBlockPos(), Direction.Axis.Y);
 
-        // 1. DESSINER LE DEMI-AXE (SHAFT) DE CREATE VERS LE HAUT
         SuperByteBuffer shaft = CachedBuffers.partial(AllPartialModels.SHAFT_HALF, state);
-        // Cette fonction native de Create applique la lumière et la rotation parfaitement !
+
 
         kineticRotationTransform(shaft, blockEntity, Direction.Axis.Y, angle, light)
                 .overlay(overlay)
@@ -47,21 +46,11 @@ public class SprinklerRenderer extends KineticBlockEntityRenderer<SprinklerBlock
                 .renderInto(poseStack, buffer.getBuffer(RenderType.solid()));
 
 
-
-
         SuperByteBuffer helixBuffer = CachedBuffers.partial(ModPartialModels.HELIX, state);
 
         kineticRotationTransform(helixBuffer, blockEntity, Direction.Axis.Y, angle, light)
                 .scale(2.0f,2.0f,2.0f)
                 .translate(-0.25f, -0.150, -0.25f)
                 .renderInto(poseStack, buffer.getBuffer(RenderType.cutoutMipped()));
-
-//        helixBuffer
-//                .light(light)
-//                .overlay(overlay)
-//                .scale(2.0f,2.0f,2.0f)
-//                .translate(-0.25f, -0.150, -0.25f)
-//                .rotateYCenteredDegrees(angle * speed)
-//                .renderInto(poseStack, buffer.getBuffer(RenderType.cutoutMipped()));
     }
 }

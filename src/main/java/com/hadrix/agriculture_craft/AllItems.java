@@ -7,8 +7,10 @@ import com.hadrix.agriculture_craft.item.ThermometerItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+
 
 /**
  * Item registration. Each item overrides its model to borrow a vanilla texture, so the
@@ -74,7 +76,7 @@ public class AllItems {
             .register();
 
     public static final ItemEntry<BananaItem> BANANA_ITEM = AgricultureCraft.REGISTRATE
-            .item("banana_item.json", BananaItem::new)
+            .item("banana_item", BananaItem::new)
             .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/banana_item")))
             .register();
 

@@ -1,3 +1,6 @@
 {
-  "parent": "agriculture_craft:block/banana_model_state_1"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "agriculture_craft:item/banana_model_state_1"
+  }
 }
