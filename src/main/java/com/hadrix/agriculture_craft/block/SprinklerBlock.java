@@ -1,7 +1,5 @@
 package com.hadrix.agriculture_craft.block;
 
-import com.google.common.base.Ticker;
-import com.hadrix.agriculture_craft.AllBlockEntityTypes;
 import com.hadrix.agriculture_craft.AllBlocks;
 import com.mojang.serialization.MapCodec;
 import com.simibubi.create.content.kinetics.base.RotatedPillarKineticBlock;
@@ -9,9 +7,7 @@ import com.simibubi.create.foundation.block.IBE;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;

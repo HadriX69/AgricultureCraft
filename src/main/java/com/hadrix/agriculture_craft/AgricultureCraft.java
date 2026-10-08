@@ -139,6 +139,8 @@ public class AgricultureCraft {
 //        generator.addProvider(event.includeServer(), new AgricultureCraftFillingRecipeGen(output, registries));
 //        generator.addProvider(event.includeServer(), new AgricultureCraftEmptyingRecipeGen(output, registries));
 //        generator.addProvider(event.includeServer(), new AgricultureCraftDeployingRecipeGen(output, registries));
+        generator.addProvider(event.includeServer(), new BananaPorridgeBowlMixingRecipe(output, registries));
+        generator.addProvider(event.includeServer(), new BananaPorridgePressingRecipe(output, registries));
     }
 
     private void onRegisterCapabilities(RegisterCapabilitiesEvent event) {

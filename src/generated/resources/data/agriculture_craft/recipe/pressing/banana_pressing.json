@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "agriculture_craft:banana_item"
+    }
+  ],
+  "results": [
+    {
+      "id": "agriculture_craft:banana_porridge"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "agriculture_craft:banana_porridge"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "results": [
+    {
+      "id": "agriculture_craft:banana_porridge_bowl"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {"item" : "agriculture_craft:banana_porridge"},
+    {"item" : "minecraft:bowl"}
+  ],
+  "result": {
+    "count": 1,
+    "id": "agriculture_craft:banana_porridge_bowl"
+  }
+}

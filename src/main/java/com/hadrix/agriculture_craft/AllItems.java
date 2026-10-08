@@ -1,9 +1,6 @@
 package com.hadrix.agriculture_craft;
 
-import com.hadrix.agriculture_craft.item.AnemometerItem;
-import com.hadrix.agriculture_craft.item.BananaItem;
-import com.hadrix.agriculture_craft.item.SeasonometerItem;
-import com.hadrix.agriculture_craft.item.ThermometerItem;
+import com.hadrix.agriculture_craft.item.*;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.resources.ResourceLocation;
@@ -80,7 +77,15 @@ public class AllItems {
             .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/banana_item")))
             .register();
 
+    public static final ItemEntry<BananaPorridgeItem> BANANA_PORRIDGE = AgricultureCraft.REGISTRATE
+            .item("banana_porridge", BananaPorridgeItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/banana_porridge")))
+            .register();
 
+    public static final ItemEntry<BananaPorridgeBowlItem> BANANA_PORRIDGE_BOWL = AgricultureCraft.REGISTRATE
+            .item("banana_porridge_bowl", BananaPorridgeBowlItem::new)
+            .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/banana_porridge_bowl")))
+            .register();
 
 
     public static void register() {

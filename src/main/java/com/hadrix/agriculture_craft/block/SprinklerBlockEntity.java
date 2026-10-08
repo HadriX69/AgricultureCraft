@@ -68,7 +68,7 @@ public class SprinklerBlockEntity extends KineticBlockEntity
             return 1; // 1x1
         }
 
-        // Calcule un rayon proportionnel de 1 à 20 blocs (256 RPM = rayon max de 20)
+        // Calculate a proportional radius of 1 to 20 blocks (256 RPM = max radius of 20)
         int calculatedRadius = 1 + (int) ((speed / 256.0f) * 19);
         return Math.min(20, calculatedRadius);
     }
@@ -196,7 +196,6 @@ public class SprinklerBlockEntity extends KineticBlockEntity
                                             itemEntity.setDeltaMovement(0.0, 0.2, 0.0);
 
                                             level.addFreshEntity(itemEntity);
-//                                        }
                                         }
                                         else
                                         {
