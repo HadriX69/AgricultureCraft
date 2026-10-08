@@ -1,10 +1,13 @@
 package com.hadrix.agriculture_craft.mixin;
 
+import com.hadrix.agriculture_craft.ILubricatable;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,10 +17,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = KineticBlockEntity.class, remap = false)
-public abstract class KineticBlockEntityMixin extends SmartBlockEntity {
+import java.util.List;
 
-    // Champ personnalisé injecté dans chaque KineticBlockEntity
+@Mixin(value = KineticBlockEntity.class)
+public abstract class KineticBlockEntityMixin extends SmartBlockEntity implements ILubricatable {
+
     @Unique
     private int agriculture_craft$lubricatedTimer = 0;
 
@@ -25,40 +29,79 @@ public abstract class KineticBlockEntityMixin extends SmartBlockEntity {
         super(type, pos, state);
     }
 
-    // 1. MODIFICATION DU STRESS : Réduit l'impact de stress de 50% si lubrifié
-    @Inject(method = "calculateStressApplied", at = @At("RETURN"), cancellable = true)
-    private void agriculture_craft$reduceStressWhenLubricated(CallbackInfoReturnable<Float> cir) {
+    @Override
+    public void agriculture_craft$setLubricated(int ticks) {
+        this.agriculture_craft$lubricatedTimer = ticks;
+    }
+
+    @Override
+    public int agriculture_craft$getLubricatedTimer() {
+        return this.agriculture_craft$lubricatedTimer;
+    }
+
+    // --- 1. LES LUNETTES (GOGGLES) ---
+    @Inject(method = "addToGoggleTooltip", at = @At("RETURN"), remap = false)
+    private void agriculture_craft$addGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking, CallbackInfoReturnable<Boolean> cir) {
         if (this.agriculture_craft$lubricatedTimer > 0) {
-            float originalValue = cir.getReturnValue();
-            // On divise par 2 l'impact de stress
-            cir.setReturnValue(originalValue * 0.5f);
+            int seconds = this.agriculture_craft$lubricatedTimer / 20;
+            int minutes = seconds / 60;
+            int remainingSeconds = seconds % 60;
+
+            // Ajoute une ligne vide pour aérer
+            tooltip.add(Component.empty());
+
+            // Format à la "Create" : Espaces au début, texte gris, valeurs en jaune/or
+            tooltip.add(Component.translatable("item.agriculture_craft.lubrication")
+                    .withStyle(ChatFormatting.GRAY)
+                    .append(Component.literal(String.format("%02d:%02d", minutes, remainingSeconds))
+                            .withStyle(ChatFormatting.GOLD)));
         }
     }
 
-    // 2. TIMING DE LA LUBRIFICATION : Décompte des ticks
+    // --- 2. RÉDUIRE LE STRESS CONSOMMÉ (ex: Presse, Mixeur) ---
+    @Inject(method = "calculateStressApplied", at = @At("RETURN"), cancellable = true, remap = false)
+    private void agriculture_craft$reduceStressApplied(CallbackInfoReturnable<Float> cir) {
+        if (this.agriculture_craft$lubricatedTimer > 0) {
+            cir.setReturnValue(cir.getReturnValue() * 0.25f); // Divise par 4
+        }
+    }
+
+    // --- 3. AUGMENTER LA CAPACITÉ PRODUITE (ex: Roue à eau, Moteur) ---
+    @Inject(method = "calculateAddedStressCapacity", at = @At("RETURN"), cancellable = true, remap = false)
+    private void agriculture_craft$boostStressCapacity(CallbackInfoReturnable<Float> cir) {
+        if (this.agriculture_craft$lubricatedTimer > 0) {
+            cir.setReturnValue(cir.getReturnValue() * 1.5f); // +50% de production
+        }
+    }
+
+    // --- 4. GESTION DU TEMPS ET MISE À JOUR ---
     @Inject(method = "tick", at = @At("HEAD"))
     private void agriculture_craft$tickLubrication(CallbackInfo ci) {
         if (this.agriculture_craft$lubricatedTimer > 0) {
             this.agriculture_craft$lubricatedTimer--;
 
-            // Quand le timer expire, on force le réseau Create à re-calculer le stress !
+            // Si le timer expire, on force Create à se mettre à jour
             if (this.agriculture_craft$lubricatedTimer == 0 && this.level != null && !this.level.isClientSide()) {
                 KineticBlockEntity self = (KineticBlockEntity) (Object) this;
+
                 if (self.getOrCreateNetwork() != null) {
+                    self.getOrCreateNetwork().updateCapacity();
                     self.getOrCreateNetwork().updateStress();
                 }
+                // Met à jour les clients (pour que les Goggles s'éteignent)
+                self.sendData();
             }
         }
     }
 
-    // 3. SAUVEGARDE NBT : On sauvegarde le timer quand le monde est sauvegardé
+    // --- 5. SAUVEGARDES ---
     @Inject(method = "write", at = @At("TAIL"))
-    private void agriculture_craft$writeLubricationNbt(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci) {
+    private void agriculture_craft$writeLubrication(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci) {
         tag.putInt("LubricatedTimer", this.agriculture_craft$lubricatedTimer);
     }
 
     @Inject(method = "read", at = @At("TAIL"))
-    private void agriculture_craft$readLubricationNbt(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci) {
+    private void agriculture_craft$readLubrication(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci) {
         this.agriculture_craft$lubricatedTimer = tag.getInt("LubricatedTimer");
     }
 }

@@ -45,6 +45,7 @@
   "item.agriculture_craft.seasonometer.season": "Season : ",
   "item.agriculture_craft.thermometer": "Thermometer",
   "item.agriculture_craft.thermometer.temperature": "Temperature : ",
+  "item.agriculture_craft.lubrication" : "Lubrication : ",
   "itemGroup.agriculture_craft": "AgricultureCraft",
   "itemGroup.agriculture_craft.main_tab": "Main Tab",
   "tooltip.agriculture_craft.banana_tree.season": "Season : §dSPRING§r, §eSUMMER§r, §bWINTER§r, §6AUTUMN",
