@@ -39,7 +39,7 @@ public abstract class KineticBlockEntityMixin extends SmartBlockEntity implement
         return this.agriculture_craft$lubricatedTimer;
     }
 
-    // --- 1. LES LUNETTES (GOGGLES) ---
+    //GOGGLES GUI
     @Inject(method = "addToGoggleTooltip", at = @At("RETURN"), remap = false)
     private void agriculture_craft$addGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking, CallbackInfoReturnable<Boolean> cir) {
         if (this.agriculture_craft$lubricatedTimer > 0) {
@@ -47,10 +47,8 @@ public abstract class KineticBlockEntityMixin extends SmartBlockEntity implement
             int minutes = seconds / 60;
             int remainingSeconds = seconds % 60;
 
-            // Ajoute une ligne vide pour aérer
             tooltip.add(Component.empty());
 
-            // Format à la "Create" : Espaces au début, texte gris, valeurs en jaune/or
             tooltip.add(Component.translatable("item.agriculture_craft.lubrication")
                     .withStyle(ChatFormatting.GRAY)
                     .append(Component.literal(String.format("%02d:%02d", minutes, remainingSeconds))
@@ -58,29 +56,28 @@ public abstract class KineticBlockEntityMixin extends SmartBlockEntity implement
         }
     }
 
-    // --- 2. RÉDUIRE LE STRESS CONSOMMÉ (ex: Presse, Mixeur) ---
+    // stress reduction
     @Inject(method = "calculateStressApplied", at = @At("RETURN"), cancellable = true, remap = false)
     private void agriculture_craft$reduceStressApplied(CallbackInfoReturnable<Float> cir) {
         if (this.agriculture_craft$lubricatedTimer > 0) {
-            cir.setReturnValue(cir.getReturnValue() * 0.25f); // Divise par 4
+            cir.setReturnValue(cir.getReturnValue() * 0.25f); // Split by 4
         }
     }
 
-    // --- 3. AUGMENTER LA CAPACITÉ PRODUITE (ex: Roue à eau, Moteur) ---
+    // capacity increase
     @Inject(method = "calculateAddedStressCapacity", at = @At("RETURN"), cancellable = true, remap = false)
     private void agriculture_craft$boostStressCapacity(CallbackInfoReturnable<Float> cir) {
         if (this.agriculture_craft$lubricatedTimer > 0) {
-            cir.setReturnValue(cir.getReturnValue() * 1.5f); // +50% de production
+            cir.setReturnValue(cir.getReturnValue() * 1.5f); // +50% production
         }
     }
 
-    // --- 4. GESTION DU TEMPS ET MISE À JOUR ---
+    // Time Management
     @Inject(method = "tick", at = @At("HEAD"))
     private void agriculture_craft$tickLubrication(CallbackInfo ci) {
         if (this.agriculture_craft$lubricatedTimer > 0) {
             this.agriculture_craft$lubricatedTimer--;
 
-            // Si le timer expire, on force Create à se mettre à jour
             if (this.agriculture_craft$lubricatedTimer == 0 && this.level != null && !this.level.isClientSide()) {
                 KineticBlockEntity self = (KineticBlockEntity) (Object) this;
 
@@ -88,13 +85,12 @@ public abstract class KineticBlockEntityMixin extends SmartBlockEntity implement
                     self.getOrCreateNetwork().updateCapacity();
                     self.getOrCreateNetwork().updateStress();
                 }
-                // Met à jour les clients (pour que les Goggles s'éteignent)
                 self.sendData();
             }
         }
     }
 
-    // --- 5. SAUVEGARDES ---
+    // Save management
     @Inject(method = "write", at = @At("TAIL"))
     private void agriculture_craft$writeLubrication(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket, CallbackInfo ci) {
         tag.putInt("LubricatedTimer", this.agriculture_craft$lubricatedTimer);

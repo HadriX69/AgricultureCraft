@@ -100,7 +100,7 @@ class RenameModTask extends DefaultTask {
 
         // 1. Rewrite file contents (config files + resource text + every .java).
         Set<Path> contentFiles = new LinkedHashSet<>()
-        ['gradle.properties', 'README.md'].each {
+        ['gradle.properties', 'DOC.md'].each {
             Path p = root.resolve(it); if (Files.exists(p)) contentFiles << p
         }
         // Resource text files: lang jsons, mixin config, pack.mcmeta. Binary resources

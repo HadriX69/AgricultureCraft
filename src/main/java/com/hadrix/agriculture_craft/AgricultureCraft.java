@@ -127,18 +127,6 @@ public class AgricultureCraft {
         CompletableFuture<HolderLookup.Provider> registries = event.getLookupProvider();
         //ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-//        generator.addProvider(event.includeServer(), new AgricultureCraftSequencedAssemblyGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftWashingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftHauntingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftCrushingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftMillingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftPressingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftCuttingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftMixingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftCompactingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftFillingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftEmptyingRecipeGen(output, registries));
-//        generator.addProvider(event.includeServer(), new AgricultureCraftDeployingRecipeGen(output, registries));
         generator.addProvider(event.includeServer(), new BananaPorridgeBowlMixingRecipe(output, registries));
         generator.addProvider(event.includeServer(), new BananaPorridgePressingRecipe(output, registries));
     }

@@ -68,7 +68,7 @@ public class SeasonometerItem extends Item
 
                 if (level.isClientSide())
                 {
-                    // Your client logic here
+
                 }
             }
         }
