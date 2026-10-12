@@ -12,9 +12,4 @@ public class banana_trunk_state_1 extends Block {
     public banana_trunk_state_1(Properties properties) {
         super(properties);
     }
-
-    @Override
-    public SoundType getSoundType(BlockState state, LevelReader level, BlockPos pos, @Nullable Entity entity) {
-        return SoundType.WOOD;
-    }
 }

@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,8 +20,12 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Banana extends Block {
 
@@ -81,5 +86,20 @@ public class Banana extends Block {
         }
 
         return InteractionResult.PASS;
+    }
+
+    @Override
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params)
+    {
+        if (state.getValue(MATURITY) == 1)
+        {
+            ItemStack itemStack = new ItemStack(AllItems.BANANA_ITEM.get(), 1);
+            return Collections.singletonList(itemStack);
+        }
+        else
+        {
+            ItemStack itemStack = new ItemStack(Items.AIR, 1);
+            return Collections.singletonList(itemStack);
+        }
     }
 }

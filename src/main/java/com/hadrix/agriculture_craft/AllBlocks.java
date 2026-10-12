@@ -10,6 +10,7 @@ import com.hadrix.agriculture_craft.tree.BananaTree;
 import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.api.stress.BlockStressValues;
 import com.simibubi.create.foundation.data.BlockStateGen;
+import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -17,12 +18,12 @@ import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+
+import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
 
 /**
  * Block registration.
@@ -81,9 +82,11 @@ public class AllBlocks {
 
     public static final BlockEntry<SprinklerBlock> SPRINKLER_BLOCK = AgricultureCraft.REGISTRATE
             .block("sprinkler", SprinklerBlock::new)
+            .initialProperties(SharedProperties::stone)
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/sprinkler_block"))))
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().sound(SoundType.COPPER).strength(3.0F, 6.0F).requiresCorrectToolForDrops())
             .onRegister(b -> BlockStressValues.IMPACTS.register(b, () -> 128))
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
             .item(SprinklerItem::new)
             .build()
             .register();
@@ -98,7 +101,7 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_tree_state_1> BANANA_TREE_STATE_1 = AgricultureCraft.REGISTRATE
             .block("banana_tree_state_1", banana_tree_state_1::new)
-            .properties(p -> p.noCollission().noOcclusion())
+            .properties(p -> p.noCollission().noOcclusion().instabreak().sound(SoundType.GRASS))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_0"))))
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_0")))
@@ -107,7 +110,7 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_tree_state_2> BANANA_TREE_STATE_2 = AgricultureCraft.REGISTRATE
             .block("banana_tree_state_2", banana_tree_state_2::new)
-            .properties(p -> p.noCollission().noOcclusion())
+            .properties(p -> p.noCollission().noOcclusion().instabreak().sound(SoundType.GRASS))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_1"))))
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_1")))
@@ -116,8 +119,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_1> BANANA_TRUNK_STATE_1 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_1", banana_trunk_state_1::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_8"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_8")))
             .build()
@@ -125,8 +129,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_2> BANANA_TRUNK_STATE_2 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_2", banana_trunk_state_2::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_7"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_7")))
             .build()
@@ -134,8 +139,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_3> BANANA_TRUNK_STATE_3 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_3", banana_trunk_state_3::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_6"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_6")))
             .build()
@@ -143,8 +149,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_4> BANANA_TRUNK_STATE_4 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_4", banana_trunk_state_4::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_5"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_5")))
             .build()
@@ -152,8 +159,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_5> BANANA_TRUNK_STATE_5 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_5", banana_trunk_state_5::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_4"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_4")))
             .build()
@@ -161,8 +169,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_6> BANANA_TRUNK_STATE_6 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_6", banana_trunk_state_6::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_3"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_3")))
             .build()
@@ -170,8 +179,9 @@ public class AllBlocks {
 
     public static final BlockEntry<banana_trunk_state_7> BANANA_TRUNK_STATE_7 = AgricultureCraft.REGISTRATE
             .block("banana_trunk_state_7", banana_trunk_state_7::new)
-            .properties(p -> p.noOcclusion())
+            .properties(p -> p.noOcclusion().strength(1.5F, 3.0F).sound(SoundType.WOOD))
             .blockstate((c, p) -> p.simpleBlock(c.get(), p.models().getExistingFile(p.modLoc("block/banana_tree_age_2"))))
+            .tag(BlockTags.LOGS)
             .item()
             .model((c, p) -> p.withExistingParent(c.getName(), p.modLoc("block/banana_tree_age_2")))
             .build()
@@ -185,7 +195,6 @@ public class AllBlocks {
                 p.getVariantBuilder(c.get()).forAllStates(state -> {
                     int age = state.getValue(BananaTree.AGE);
 
-                    // On dit à Registrate quel modèle 3D utiliser selon l'âge
                     String modelName = switch (age) {
                         case 0 -> "banana_tree_age_0";
                         case 1 -> "banana_tree_age_1";
@@ -227,7 +236,7 @@ public class AllBlocks {
 
         public static final BlockEntry<Banana> BANANA = AgricultureCraft.REGISTRATE
             .block("banana", Banana::new)
-            .properties(p -> p.noOcclusion().randomTicks())
+            .properties(p -> p.noOcclusion().randomTicks().instabreak())
                 .blockstate((c, p) -> {
                     p.getVariantBuilder(c.get()).forAllStates(state -> {
                         int maturity = state.getValue(Banana.MATURITY);
@@ -256,7 +265,7 @@ public class AllBlocks {
     public static final BlockEntry<PottedBananaTree> BANANA_TREE_POTTED = AgricultureCraft.REGISTRATE
             .block("banana_tree_potted", properties -> new PottedBananaTree(
                     () -> (FlowerPotBlock) Blocks.FLOWER_POT,
-                    BANANA_TREE, // Assure-toi que c'est bien la référence à ton bloc pousse
+                    BANANA_TREE,
                     properties
             ))
             .properties(p -> p.instabreak().noOcclusion().randomTicks())

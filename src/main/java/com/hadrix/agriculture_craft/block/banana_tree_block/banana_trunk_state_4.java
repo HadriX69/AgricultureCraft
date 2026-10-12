@@ -1,16 +1,22 @@
 package com.hadrix.agriculture_craft.block.banana_tree_block;
 
+import com.hadrix.agriculture_craft.AllBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 public class banana_trunk_state_4 extends Block
 {
@@ -31,7 +37,9 @@ public class banana_trunk_state_4 extends Block
     }
 
     @Override
-    public SoundType getSoundType(BlockState state, LevelReader level, BlockPos pos, @Nullable Entity entity) {
-        return SoundType.WOOD;
+    protected List<ItemStack> getDrops(BlockState state, LootParams.Builder params) {
+        ItemStack itemStack = new ItemStack(AllBlocks.BANANA_TRUNK_STATE_1.get(), 1);
+
+        return Collections.singletonList(itemStack);
     }
 }

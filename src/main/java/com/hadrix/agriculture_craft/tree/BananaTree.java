@@ -1,6 +1,7 @@
 package com.hadrix.agriculture_craft.tree;
 
 import com.hadrix.agriculture_craft.AllBlocks;
+import com.hadrix.agriculture_craft.ClimateManager;
 import com.hadrix.agriculture_craft.block.Banana;
 import com.hadrix.agriculture_craft.block.BananaTreeBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -233,7 +234,10 @@ public class BananaTree extends Block implements EntityBlock {
         }
         if(TreeAge <= 5)
         {
-            stack.shrink(1);
+            if(!player.isCreative())
+            {
+                stack.shrink(1);
+            }
             return ItemInteractionResult.SUCCESS;
         }
         else
@@ -253,7 +257,7 @@ public class BananaTree extends Block implements EntityBlock {
         BlockPos highestPos = pos.above(currentAge + 1);
 
         if (random.nextInt(10) == 0) {
-            if (light >= 9 && currentAge < 8 && CanGrow) {
+            if (light >= 9 && currentAge < 8 && CanGrow && ClimateManager.GetTemperature(level, pos) >= 10 && ClimateManager.GetTemperature(level, pos) <= 30) {
 
                 //BlockPos highestPos = pos.above(currentAge + 1);
 
@@ -398,5 +402,4 @@ public class BananaTree extends Block implements EntityBlock {
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return AllBlocks.BANANA_TREE_LEAF_ENTITY.create(pos, state);
     }
-
 }
