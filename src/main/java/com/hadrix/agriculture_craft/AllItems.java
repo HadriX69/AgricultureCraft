@@ -44,11 +44,13 @@ public class AllItems {
 
     public static final ItemEntry<ThermometerItem> THERMOMETER = AgricultureCraft.REGISTRATE
             .item("thermometer", ThermometerItem::new)
+            .properties(p -> p.stacksTo(1))
             .model((c, p) -> p.withExistingParent(c.getName(), ResourceLocation.fromNamespaceAndPath("agriculture_craft", "item/thermometer_3d")))
             .register();
 
     public static final ItemEntry<SeasonometerItem> SEASONOMETER = AgricultureCraft.REGISTRATE
             .item("seasonometer", SeasonometerItem::new)
+            .properties(p -> p.stacksTo(1))
             .model((c, p) -> {
 
                 p.generated(c::getEntry, AgricultureCraft.asResource("item/seasonometer_default_t"))
