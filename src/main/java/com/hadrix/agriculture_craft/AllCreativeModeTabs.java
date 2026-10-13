@@ -12,7 +12,7 @@ public class AllCreativeModeTabs {
             AgricultureCraft.REGISTRATE.defaultCreativeTab("main_tab", builder ->
                     builder
                             .title(Component.translatable(Lang.CREATIVE_TAB))
-                            .icon(() -> new ItemStack(Items.HONEYCOMB))  // Replace with your own icon
+                            .icon(() -> new ItemStack(AllBlocks.BANANA_TREE_STATE_2))  // Replace with your own icon
                             .build()
             ).register();
 

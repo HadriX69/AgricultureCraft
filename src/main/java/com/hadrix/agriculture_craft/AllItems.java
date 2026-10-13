@@ -37,10 +37,11 @@ public class AllItems {
             .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/iron_ingot")))
             .register();
 
-    public static final ItemEntry<AnemometerItem> ANEMOMETER = AgricultureCraft.REGISTRATE
-            .item("anemometer", AnemometerItem::new)
-            .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/brick")))
-            .register();
+    // Not implemented
+//    public static final ItemEntry<AnemometerItem> ANEMOMETER = AgricultureCraft.REGISTRATE
+//            .item("anemometer", AnemometerItem::new)
+//            .model((c, p) -> p.generated(c::getEntry, ResourceLocation.withDefaultNamespace("item/brick")))
+//            .register();
 
     public static final ItemEntry<ThermometerItem> THERMOMETER = AgricultureCraft.REGISTRATE
             .item("thermometer", ThermometerItem::new)
